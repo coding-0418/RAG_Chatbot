@@ -23,13 +23,7 @@ EXAMPLE_QUESTIONS = [
     ("📄", "How do I download my capital gains statement on Kuvera?"),
 ]
 
-SCHEMES = [
-    "SBI Bluechip Fund",
-    "SBI Contra Fund",
-    "SBI Long Term Equity Fund (ELSS)",
-    "SBI Magnum Midcap Fund",
-    "SBI Small Cap Fund",
-]
+ALL_FUND_HOUSES = "All fund houses"
 
 USER_AVATAR = "🧑‍💼"
 ASSISTANT_AVATAR = "📊"
@@ -142,8 +136,9 @@ def render_hero() -> None:
         """
         <div class="mf-hero">
             <h1>📊 Mutual Fund FAQ Assistant</h1>
-            <p>Facts-only answers about SBI Mutual Fund schemes on Kuvera — grounded in
-            official sources, with no investment advice.</p>
+            <p>Facts-only answers about mutual fund schemes across the fund houses covered
+            in the knowledge base, viewed via Kuvera — grounded in official sources, with
+            no investment advice.</p>
             <div class="mf-hero-badges">
                 <span class="mf-pill">✅ Guardrails active</span>
                 <span class="mf-pill">📚 Source-cited answers</span>
@@ -166,6 +161,7 @@ def init_session_state() -> None:
     st.session_state.setdefault("blocked_count", 0)
     st.session_state.setdefault("last_query_time", 0.0)
     st.session_state.setdefault("rate_limited", False)
+    st.session_state.setdefault("amc_filter", ALL_FUND_HOUSES)
 
 
 def build_history() -> list[Turn]:
@@ -221,7 +217,9 @@ def process_question(question: str) -> None:
         with st.spinner("Searching approved sources..."):
             rag = load_rag()
             history = build_history()
-            response = rag.answer(question, history=history)
+            selected_amc = st.session_state.amc_filter
+            amc = None if selected_amc == ALL_FUND_HOUSES else selected_amc
+            response = rag.answer(question, history=history, amc=amc)
 
         if response.blocked:
             st.warning(response.answer)
@@ -260,11 +258,32 @@ def render_sidebar() -> None:
         st.markdown("### 📊 Assistant Info")
         st.caption("Facts-only FAQ assistant — no investment advice.")
 
+        try:
+            rag = load_rag()
+            amcs = rag.list_amcs()
+            chunk_count = rag.collection_size()
+        except Exception:
+            amcs, chunk_count = [], 0
+
         with st.container(border=True):
             st.markdown("**🗂️ Coverage**")
-            st.markdown("**Platform:** Kuvera  \n**AMC:** SBI Mutual Fund")
-            for scheme in SCHEMES:
-                st.markdown(f"- {scheme}")
+            st.markdown("**Platform:** Kuvera")
+            if amcs:
+                st.markdown("**Fund houses in knowledge base:**")
+                for amc_name in amcs:
+                    st.markdown(f"- {amc_name}")
+            else:
+                st.caption("No fund houses indexed yet — run `python ingest.py`.")
+
+        if amcs:
+            with st.container(border=True):
+                st.markdown("**🔎 Filter answers**")
+                st.selectbox(
+                    "Scope questions to one fund house",
+                    options=[ALL_FUND_HOUSES, *amcs],
+                    key="amc_filter",
+                    label_visibility="collapsed",
+                )
 
         with st.container(border=True):
             st.markdown("**🛡️ Guardrails**")
@@ -274,11 +293,8 @@ def render_sidebar() -> None:
                 "✅ Source-grounded answers only"
             )
 
-        try:
-            rag = load_rag()
-            st.caption(f"🗃️ Knowledge base: {rag.collection_size()} indexed chunks")
-        except Exception:
-            pass
+        if chunk_count:
+            st.caption(f"🗃️ Knowledge base: {chunk_count} indexed chunks")
 
         with st.container(border=True):
             st.markdown("**📈 Session metrics**")

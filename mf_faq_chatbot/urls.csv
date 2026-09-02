@@ -1,24 +1,24 @@
-url,title,category
-https://www.sbimf.com/sbimf-scheme-details/sbi-large-cap-fund-(formerly-known-as-sbi-bluechip-fund)-43,SBI Bluechip Fund (Large Cap) Scheme Page,SBI Scheme
-https://www.sbimf.com/sbimf-scheme-details/sbi-contra-fund-12,SBI Contra Fund Scheme Page,SBI Scheme
-https://www.sbimf.com/sbimf-scheme-details/sbi-elss-tax-saver-fund-(formerly-known-as-sbi-long-term-equity-fund)-3,SBI Long Term Equity Fund (ELSS) Scheme Page,SBI Scheme
-https://www.sbimf.com/sbimf-scheme-details/sbi-small-cap-fund-329,SBI Small Cap Fund Scheme Page,SBI Scheme
-https://www.sbimf.com/factsheets,SBI Mutual Fund Factsheets Portal,SBI Factsheet
-https://www.sbimf.com/total-expense-ratio-of-mutual-fund-schemes,SBI Total Expense Ratio Disclosure,SBI TER
-https://www.sbimf.com/offer-document-sid-kim,SBI Offer Documents SID and KIM Portal,SBI KIM/SID
-https://www.sbimf.com/docs/default-source/sif-forms/sid---sbi-large-cap-fund-(formerly-known-as-bluechip-fund).pdf,SBI Bluechip Fund SID,SBI SID
-https://www.sbimf.com/docs/default-source/lists/sid---sbi-contra-fund8ce474c1a5404a2b899f14f6f21a95dd.pdf,SBI Contra Fund SID,SBI SID
-https://www.sbimf.com/docs/default-source/lists/sid---sbi-elss-tax-saver-fund-(formerly-known-as-sbi-long-term-equity-fund).pdf,SBI Long Term Equity Fund (ELSS) SID,SBI SID
-https://www.sbimf.com/docs/default-source/lists/sid_kim/sid---sbi-magnum-midcap-fund.pdf,SBI Magnum Midcap Fund SID,SBI SID
-https://www.sbimf.com/docs/default-source/scheme-portfolios/default-library/kim---sbi-blue-chip-fund.pdf,SBI Bluechip Fund KIM,SBI KIM
-https://www.sbimf.com/docs/default-source/scheme-factsheets/sbi-contra-fund-factsheet-17fae076-7a0e-4e87-b82c-ab217d24ee3a.pdf,SBI Contra Fund Factsheet,SBI Factsheet
-https://www.sbimf.com/docs/default-source/scheme-factsheets/sbi-small-cap-fund-factsheet-march-2026.pdf,SBI Small Cap Fund Factsheet,SBI Factsheet
-https://investor.sebi.gov.in/riskometer.html,SEBI Investor Riskometer Guide,SEBI
-https://www.sebi.gov.in/legal/circulars/oct-2020/circular-on-product-labeling-in-mutual-fund-schemes-risk-o-meter_47796.html,SEBI Risk-o-meter Circular,SEBI
-https://www.sebi.gov.in/sebi_data/faqfiles/sep-2024/1727242783639.pdf,SEBI Mutual Fund Investor FAQs,SEBI
-https://www.amfiindia.com/investor,AMFI Investor Corner,AMFI
-https://www.amfiindia.com/investor/investor-awareness-program,AMFI How to Invest and Investor Awareness,AMFI
-https://kuvera.freshdesk.com/support/solutions/articles/82000909447-how-do-i-download-my-mutual-fund-portfolio-holding-statement-,Kuvera Portfolio Holding Statement Guide,Kuvera
-https://kuvera.freshdesk.com/support/solutions/articles/82000725676-how-do-i-get-my-capital-gains-report-for-filing-taxes-,Kuvera Capital Gains Report Guide,Kuvera
-https://kuvera.freshdesk.com/support/solutions/articles/82000725727-how-do-i-get-tax-reports-on-kuvera-,Kuvera Tax Reports Guide,Kuvera
-https://kuvera.freshdesk.com/support/solutions/articles/82000725654-how-do-i-download-my-mutual-fund-transaction-history-from-kuvera-,Kuvera Transaction History Guide,Kuvera
+url,title,category,amc
+https://www.sbimf.com/sbimf-scheme-details/sbi-large-cap-fund-(formerly-known-as-sbi-bluechip-fund)-43,SBI Bluechip Fund (Large Cap) Scheme Page,SBI Scheme,SBI Mutual Fund
+https://www.sbimf.com/sbimf-scheme-details/sbi-contra-fund-12,SBI Contra Fund Scheme Page,SBI Scheme,SBI Mutual Fund
+https://www.sbimf.com/sbimf-scheme-details/sbi-elss-tax-saver-fund-(formerly-known-as-sbi-long-term-equity-fund)-3,SBI Long Term Equity Fund (ELSS) Scheme Page,SBI Scheme,SBI Mutual Fund
+https://www.sbimf.com/sbimf-scheme-details/sbi-small-cap-fund-329,SBI Small Cap Fund Scheme Page,SBI Scheme,SBI Mutual Fund
+https://www.sbimf.com/factsheets,SBI Mutual Fund Factsheets Portal,SBI Factsheet,SBI Mutual Fund
+https://www.sbimf.com/total-expense-ratio-of-mutual-fund-schemes,SBI Total Expense Ratio Disclosure,SBI TER,SBI Mutual Fund
+https://www.sbimf.com/offer-document-sid-kim,SBI Offer Documents SID and KIM Portal,SBI KIM/SID,SBI Mutual Fund
+https://www.sbimf.com/docs/default-source/sif-forms/sid---sbi-large-cap-fund-(formerly-known-as-bluechip-fund).pdf,SBI Bluechip Fund SID,SBI SID,SBI Mutual Fund
+https://www.sbimf.com/docs/default-source/lists/sid---sbi-contra-fund8ce474c1a5404a2b899f14f6f21a95dd.pdf,SBI Contra Fund SID,SBI SID,SBI Mutual Fund
+https://www.sbimf.com/docs/default-source/lists/sid---sbi-elss-tax-saver-fund-(formerly-known-as-sbi-long-term-equity-fund).pdf,SBI Long Term Equity Fund (ELSS) SID,SBI SID,SBI Mutual Fund
+https://www.sbimf.com/docs/default-source/lists/sid_kim/sid---sbi-magnum-midcap-fund.pdf,SBI Magnum Midcap Fund SID,SBI SID,SBI Mutual Fund
+https://www.sbimf.com/docs/default-source/scheme-portfolios/default-library/kim---sbi-blue-chip-fund.pdf,SBI Bluechip Fund KIM,SBI KIM,SBI Mutual Fund
+https://www.sbimf.com/docs/default-source/scheme-factsheets/sbi-contra-fund-factsheet-17fae076-7a0e-4e87-b82c-ab217d24ee3a.pdf,SBI Contra Fund Factsheet,SBI Factsheet,SBI Mutual Fund
+https://www.sbimf.com/docs/default-source/scheme-factsheets/sbi-small-cap-fund-factsheet-march-2026.pdf,SBI Small Cap Fund Factsheet,SBI Factsheet,SBI Mutual Fund
+https://investor.sebi.gov.in/riskometer.html,SEBI Investor Riskometer Guide,SEBI,Regulatory
+https://www.sebi.gov.in/legal/circulars/oct-2020/circular-on-product-labeling-in-mutual-fund-schemes-risk-o-meter_47796.html,SEBI Risk-o-meter Circular,SEBI,Regulatory
+https://www.sebi.gov.in/sebi_data/faqfiles/sep-2024/1727242783639.pdf,SEBI Mutual Fund Investor FAQs,SEBI,Regulatory
+https://www.amfiindia.com/investor,AMFI Investor Corner,AMFI,Regulatory
+https://www.amfiindia.com/investor/investor-awareness-program,AMFI How to Invest and Investor Awareness,AMFI,Regulatory
+https://kuvera.freshdesk.com/support/solutions/articles/82000909447-how-do-i-download-my-mutual-fund-portfolio-holding-statement-,Kuvera Portfolio Holding Statement Guide,Kuvera,Platform
+https://kuvera.freshdesk.com/support/solutions/articles/82000725676-how-do-i-get-my-capital-gains-report-for-filing-taxes-,Kuvera Capital Gains Report Guide,Kuvera,Platform
+https://kuvera.freshdesk.com/support/solutions/articles/82000725727-how-do-i-get-tax-reports-on-kuvera-,Kuvera Tax Reports Guide,Kuvera,Platform
+https://kuvera.freshdesk.com/support/solutions/articles/82000725654-how-do-i-download-my-mutual-fund-transaction-history-from-kuvera-,Kuvera Transaction History Guide,Kuvera,Platform

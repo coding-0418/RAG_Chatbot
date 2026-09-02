@@ -34,6 +34,16 @@ logger = logging.getLogger(__name__)
 PROJECT_ROOT = Path(__file__).resolve().parent
 URLS_CSV = PROJECT_ROOT / "urls.csv"
 DATA_DIR = PROJECT_ROOT / "data"
+
+# Cross-cutting sources (regulator/platform docs) aren't tied to one fund house.
+# Local reference files are mapped to an AMC (or one of these tags) by filename;
+# anything not listed here falls back to "General".
+CROSS_CUTTING_AMC_TAGS = {"Regulatory", "Platform", "General"}
+LOCAL_FILE_AMC = {
+    "sbi_scheme_reference.md": "SBI Mutual Fund",
+    "kuvera_platform_guide.md": "Platform",
+    "regulatory_reference.md": "Regulatory",
+}
 CHROMA_DIR = PROJECT_ROOT / os.getenv("CHROMA_PERSIST_DIR", "vectorstore")
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "800"))
@@ -138,6 +148,7 @@ def _read_urls_csv() -> list[dict[str, str]]:
                         "url": url,
                         "title": (row.get("title") or url).strip(),
                         "category": (row.get("category") or "General").strip(),
+                        "amc": (row.get("amc") or "General").strip(),
                     }
                 )
     return rows
@@ -149,12 +160,14 @@ def _build_document(
     title: str,
     category: str,
     source_type: str,
+    amc: str,
 ) -> Document:
     metadata = {
         "source": source_url,
         "title": title,
         "category": category,
         "source_type": source_type,
+        "amc": amc,
         "last_updated": _today_iso(),
     }
     return Document(page_content=text, metadata=metadata)
@@ -169,7 +182,7 @@ def load_from_urls() -> list[Document]:
             text, content_type = _fetch_url(url)
             source_type = "pdf" if "pdf" in content_type else "webpage"
             documents.append(
-                _build_document(text, url, row["title"], row["category"], source_type)
+                _build_document(text, url, row["title"], row["category"], source_type, row["amc"])
             )
             logger.info("Successfully ingested %s (%d chars)", url, len(text))
         except Exception as exc:
@@ -205,6 +218,7 @@ def load_from_local_data() -> list[Document]:
                     title=path.stem.replace("_", " ").title(),
                     category="Local Reference",
                     source_type=source_type,
+                    amc=LOCAL_FILE_AMC.get(path.name, "General"),
                 )
             )
             logger.info("Successfully loaded local file %s", path.name)
