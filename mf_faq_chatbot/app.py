@@ -221,13 +221,7 @@ def _render_citation_chips(citations: list[dict]) -> None:
     for c in citations:
         label = c["title"] or c["source"]
         updated = c.get("last_updated", "unknown")
-        if c["source"].startswith("http"):
-            chips.append(
-                f'<a class="citation-chip" href="{c["source"]}" target="_blank">'
-                f'🔗 {label} <span class="dot">·</span> {updated}</a>'
-            )
-        else:
-            chips.append(f'<span class="citation-chip">📄 {label} <span class="dot">·</span> {updated}</span>')
+        chips.append(f'<span class="citation-chip">📄 {label} <span class="dot">·</span> {updated}</span>')
     st.markdown(f'<div class="citation-wrap">{"".join(chips)}</div>', unsafe_allow_html=True)
 
 
