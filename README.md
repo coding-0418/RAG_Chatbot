@@ -7,8 +7,13 @@ A **facts-only** FAQ chatbot for mutual fund schemes accessible on **Kuvera**. I
 The knowledge base is **multi-AMC by design**: every source is tagged with the fund house (AMC) it belongs to, retrieval can be scoped to one AMC, and the UI's fund-house list and filter are generated from whatever is actually indexed — not hardcoded. See [Adding Another Fund House](#adding-another-fund-house) for how coverage grows.
 
 **Platform:** Kuvera  
-**AMCs configured in `urls.csv`:** 25 major fund houses (SBI, HDFC, ICICI Prudential, Nippon India, Aditya Birla Sun Life, Kotak Mahindra, Axis, UTI, DSP, Tata, Franklin Templeton, Mirae Asset, Canara Robeco, PGIM India, Sundaram, Bandhan, HSBC, Motilal Oswal, PPFAS, quant, Quantum, Edelweiss, LIC, WhiteOak Capital, Baroda BNP Paribas) — each with its official homepage and Total Expense Ratio disclosure page. Run `python ingest.py` to actually index them; only SBI currently has scheme-level depth (factsheets/SID/KIM for specific schemes) — the rest are homepage/TER-level until scheme-specific sources are added per AMC.  
-**Schemes with full detail (SBI):** SBI Bluechip Fund, SBI Contra Fund, SBI Long Term Equity Fund (ELSS), SBI Magnum Midcap Fund, SBI Small Cap Fund
+**AMCs configured in `urls.csv`:** 25 major fund houses (SBI, HDFC, ICICI Prudential, Nippon India, Aditya Birla Sun Life, Kotak Mahindra, Axis, UTI, DSP, Tata, Franklin Templeton, Mirae Asset, Canara Robeco, PGIM India, Sundaram, Bandhan, HSBC, Motilal Oswal, PPFAS, quant, Quantum, Edelweiss, LIC, WhiteOak Capital, Baroda BNP Paribas) — each with its official homepage and Total Expense Ratio disclosure page. Run `python ingest.py` to actually index them.  
+**Schemes with full detail:**
+- **SBI:** SBI Bluechip Fund, SBI Contra Fund, SBI Long Term Equity Fund (ELSS), SBI Magnum Midcap Fund, SBI Small Cap Fund
+- **HDFC:** HDFC Flexi Cap Fund, HDFC Large Cap Fund, HDFC Mid-Cap Opportunities Fund, HDFC ELSS Tax Saver Fund
+- **ICICI Prudential:** Flexicap Fund, Large Cap Fund, ELSS Tax Saver Fund, MidCap Fund
+
+All other configured AMCs are currently homepage/TER-level only — see below to deepen them the same way.
 
 > **Disclaimer:** This assistant provides factual information from official mutual fund sources and does not provide investment advice, recommendations, return projections, or portfolio guidance.
 
@@ -246,7 +251,7 @@ dropped before generation rather than passed to the LLM as weak grounding — th
 7. **Full re-index on ingest:** `ingest.py` rebuilds the entire vector store rather than diffing changes — fine for a periodic scheduled job, but there's no incremental/delta ingestion yet.
 8. **No authentication:** the Streamlit app has no login/SSO layer. A lightweight per-session rate limit is built in (throttles rapid repeat questions), but a shared-network deployment should sit behind SSO or a reverse-proxy auth layer before going further than a demo.
 9. **Regex-based guardrails:** investment-advice and PII detection are pattern-based, not an LLM classifier — fast and dependency-free, but rephrasing can evade them. Treat as a first line of defense, not a compliance guarantee.
-10. **Homepage/TER-level coverage for most AMCs:** `urls.csv` now carries verified homepage and Total Expense Ratio sources for 25 major fund houses, but only SBI has scheme-level depth (individual scheme pages, factsheets, SID/KIM PDFs). Other AMCs will answer TER/general questions but likely hit "not found" for scheme-specific facts until their own scheme-level sources are added (same pattern as SBI's rows in `urls.csv`).
+10. **Homepage/TER-level coverage for most AMCs:** `urls.csv` carries verified homepage and Total Expense Ratio sources for 25 major fund houses, and scheme-level depth (individual scheme pages, factsheets, SID/KIM PDFs) for SBI, HDFC, and ICICI Prudential's most popular funds. Other AMCs will answer TER/general questions but likely hit "not found" for scheme-specific facts until their own scheme-level sources are added (same pattern as the existing SBI/HDFC/ICICI Prudential rows in `urls.csv`).
 11. **Cross-AMC comparison guardrail is unresolved:** the current guardrail blocks any "which fund is better" style comparison outright, including a neutral factual side-by-side (e.g. "what's each fund's expense ratio") across AMCs. Whether to allow that narrower case is a compliance decision that hasn't been made yet — until it is, comparisons stay blocked entirely.
 
 ---
