@@ -4,10 +4,12 @@ RAG pipeline: retrieval, guardrails (refusal/privacy), and Groq LLM generation.
 
 from __future__ import annotations
 
+import logging
 import os
 import re
-from dataclasses import dataclass
-from datetime import datetime, timezone
+import time
+from dataclasses import dataclass, field
+from datetime import UTC, datetime
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -22,24 +24,52 @@ from prompts import (
     PRIVACY_REFUSAL,
     RAG_SYSTEM_PROMPT,
     RAG_USER_PROMPT_TEMPLATE,
+    SERVICE_ERROR_RESPONSE,
 )
 
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 CHROMA_DIR = PROJECT_ROOT / os.getenv("CHROMA_PERSIST_DIR", "vectorstore")
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 TOP_K = int(os.getenv("TOP_K", "5"))
+# Chroma returns L2 distance over normalized embeddings (0 = identical, 2 = opposite).
+# Chunks farther than this are dropped as "not relevant enough" rather than sent to the LLM.
+MAX_DISTANCE = float(os.getenv("MAX_DISTANCE", "1.1"))
+# How many prior user/assistant turns to include so the LLM can resolve follow-ups
+# like "what about the exit load?". Kept small to bound prompt size and cost.
+HISTORY_TURNS = int(os.getenv("HISTORY_TURNS", "2"))
+
+
+@dataclass
+class Citation:
+    source: str
+    title: str
+    last_updated: str
 
 
 @dataclass
 class RAGResponse:
     answer: str
-    sources: list[str]
-    last_updated: str
+    sources: list[str] = field(default_factory=list)
+    citations: list[Citation] = field(default_factory=list)
+    last_updated: str = ""
     blocked: bool = False
     block_reason: str | None = None
+    error: bool = False
+    latency_seconds: float = 0.0
+    chunks_used: int = 0
+
+
+@dataclass
+class Turn:
+    """One prior user/assistant exchange, used only to resolve follow-up references."""
+
+    question: str
+    answer: str
 
 
 INVESTMENT_ADVICE_PATTERNS = [
@@ -87,6 +117,10 @@ def contains_pii(question: str) -> bool:
     return any(p.search(question) for p in _PRIVACY_PATTERNS)
 
 
+def _today_iso() -> str:
+    return datetime.now(UTC).strftime("%Y-%m-%d")
+
+
 def _format_context(docs: list[Document]) -> str:
     blocks: list[str] = []
     for idx, doc in enumerate(docs, start=1):
@@ -99,43 +133,47 @@ def _format_context(docs: list[Document]) -> str:
     return "\n\n---\n\n".join(blocks)
 
 
-def _extract_source_and_date(text: str, fallback_docs: list[Document]) -> tuple[list[str], str]:
-    source_match = re.search(r"Source:\s*(.+)", text, re.IGNORECASE)
-    date_match = re.search(r"Last updated from sources:\s*(.+)", text, re.IGNORECASE)
+def build_citations(docs: list[Document]) -> list[Citation]:
+    """Deduplicate retrieved chunks into one citation per distinct source URL,
+    preserving retrieval order (most relevant first)."""
+    seen: set[str] = set()
+    citations: list[Citation] = []
+    for doc in docs:
+        source = doc.metadata.get("source", "unknown")
+        if source in seen:
+            continue
+        seen.add(source)
+        citations.append(
+            Citation(
+                source=source,
+                title=doc.metadata.get("title", ""),
+                last_updated=doc.metadata.get("last_updated", "unknown"),
+            )
+        )
+    return citations
 
-    sources: list[str] = []
-    if source_match:
-        sources = [source_match.group(1).strip()]
-    elif fallback_docs:
-        sources = [fallback_docs[0].metadata.get("source", "unknown")]
 
-    if date_match:
-        last_updated = date_match.group(1).strip()
-    elif fallback_docs:
-        last_updated = fallback_docs[0].metadata.get("last_updated", "unknown")
-    else:
-        last_updated = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-
-    return sources, last_updated
+def _format_history(history: list[Turn]) -> list[dict[str, str]]:
+    messages: list[dict[str, str]] = []
+    for turn in history[-HISTORY_TURNS:]:
+        messages.append({"role": "user", "content": turn.question})
+        messages.append({"role": "assistant", "content": turn.answer})
+    return messages
 
 
-def _strip_source_footer(text: str) -> str:
-    lines = text.strip().splitlines()
-    answer_lines: list[str] = []
-    for line in lines:
-        if re.match(r"^\s*Source:\s*", line, re.IGNORECASE):
-            break
-        if re.match(r"^\s*Last updated from sources:\s*", line, re.IGNORECASE):
-            break
-        answer_lines.append(line)
-    return " ".join(" ".join(answer_lines).split())
+def _retrieval_query(question: str, history: list[Turn]) -> str:
+    """Expand short/pronoun-heavy follow-ups with the previous question so
+    retrieval has enough signal, without a separate LLM rewrite call."""
+    if not history:
+        return question
+    return f"{history[-1].question} {question}"
 
 
 class MutualFundRAG:
     def __init__(self) -> None:
         api_key = os.getenv("GROQ_API_KEY")
         if not api_key:
-            raise EnvironmentError(
+            raise OSError(
                 "GROQ_API_KEY is not set. Copy .env.example to .env and add your key."
             )
 
@@ -160,71 +198,116 @@ class MutualFundRAG:
             groq_api_key=api_key,
         )
 
-    def retrieve(self, question: str, k: int | None = None) -> list[Document]:
-        return self.vectorstore.similarity_search(question, k=k or TOP_K)
+    def collection_size(self) -> int:
+        try:
+            return self.vectorstore._collection.count()
+        except Exception:
+            return 0
 
-    def answer(self, question: str) -> RAGResponse:
+    def retrieve(self, question: str, k: int | None = None) -> list[Document]:
+        """Retrieve top-k chunks, dropping any farther than MAX_DISTANCE
+        (i.e. not relevant enough to be trustworthy grounding)."""
+        results = self.vectorstore.similarity_search_with_score(question, k=k or TOP_K)
+        kept = [doc for doc, distance in results if distance <= MAX_DISTANCE]
+        if not kept and results:
+            logger.info(
+                "All %d retrieved chunks exceeded MAX_DISTANCE=%.2f (best=%.3f)",
+                len(results),
+                MAX_DISTANCE,
+                min(d for _, d in results),
+            )
+        return kept
+
+    def answer(self, question: str, history: list[Turn] | None = None) -> RAGResponse:
+        start = time.monotonic()
+        history = history or []
         question = question.strip()
+
         if not question:
             return RAGResponse(
                 answer="Please enter a factual question about the covered SBI Mutual Fund schemes or Kuvera platform.",
-                sources=[],
-                last_updated=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                last_updated=_today_iso(),
             )
 
         if contains_pii(question):
+            logger.info("Blocked query: privacy")
             return RAGResponse(
                 answer=PRIVACY_REFUSAL,
-                sources=[],
-                last_updated=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                last_updated=_today_iso(),
                 blocked=True,
                 block_reason="privacy",
+                latency_seconds=time.monotonic() - start,
             )
 
         if is_investment_advice_query(question):
+            logger.info("Blocked query: investment_advice")
             return RAGResponse(
                 answer=INVESTMENT_ADVICE_REFUSAL,
                 sources=["https://www.sebi.gov.in/"],
-                last_updated=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                citations=[
+                    Citation(
+                        source="https://www.sebi.gov.in/",
+                        title="SEBI",
+                        last_updated=_today_iso(),
+                    )
+                ],
+                last_updated=_today_iso(),
                 blocked=True,
                 block_reason="investment_advice",
+                latency_seconds=time.monotonic() - start,
             )
 
-        docs = self.retrieve(question)
+        docs = self.retrieve(_retrieval_query(question, history))
         if not docs:
+            logger.info("No sufficiently relevant chunks found")
             return RAGResponse(
                 answer=NOT_FOUND_RESPONSE,
-                sources=[],
-                last_updated=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                last_updated=_today_iso(),
+                latency_seconds=time.monotonic() - start,
             )
 
         context = _format_context(docs)
         user_prompt = RAG_USER_PROMPT_TEMPLATE.format(context=context, question=question)
 
-        messages = [
-            {"role": "system", "content": RAG_SYSTEM_PROMPT},
-            {"role": "user", "content": user_prompt},
-        ]
-        llm_response = self.llm.invoke(messages)
+        messages = [{"role": "system", "content": RAG_SYSTEM_PROMPT}]
+        messages.extend(_format_history(history))
+        messages.append({"role": "user", "content": user_prompt})
+
+        try:
+            llm_response = self.llm.invoke(messages)
+        except Exception as exc:
+            logger.error("LLM call failed: %s", exc)
+            return RAGResponse(
+                answer=SERVICE_ERROR_RESPONSE,
+                last_updated=_today_iso(),
+                error=True,
+                latency_seconds=time.monotonic() - start,
+            )
+
         raw_answer = getattr(llm_response, "content", str(llm_response)).strip()
+        usage = getattr(llm_response, "usage_metadata", None) or {}
+        if usage:
+            logger.info(
+                "Groq tokens — input=%s output=%s total=%s",
+                usage.get("input_tokens"),
+                usage.get("output_tokens"),
+                usage.get("total_tokens"),
+            )
 
         if NOT_FOUND_RESPONSE.lower() in raw_answer.lower():
             return RAGResponse(
                 answer=NOT_FOUND_RESPONSE,
-                sources=[d.metadata.get("source", "unknown") for d in docs[:1]],
-                last_updated=docs[0].metadata.get("last_updated", "unknown"),
+                last_updated=_today_iso(),
+                latency_seconds=time.monotonic() - start,
+                chunks_used=len(docs),
             )
 
-        sources, last_updated = _extract_source_and_date(raw_answer, docs)
-        factual = _strip_source_footer(raw_answer)
-
-        formatted_answer = (
-            f"{factual}\n\nSource: {sources[0] if sources else 'unknown'}\n"
-            f"Last updated from sources: {last_updated}"
-        )
-
+        citations = build_citations(docs)
         return RAGResponse(
-            answer=formatted_answer,
-            sources=sources,
-            last_updated=last_updated,
+            answer=raw_answer,
+            sources=[c.source for c in citations],
+            citations=citations,
+            last_updated=citations[0].last_updated if citations else "unknown",
+            latency_seconds=time.monotonic() - start,
+            chunks_used=len(docs),
         )

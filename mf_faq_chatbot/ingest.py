@@ -9,9 +9,9 @@ import io
 import logging
 import os
 import re
-from datetime import datetime, timezone
+from collections.abc import Iterable
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Iterable
 from urllib.parse import urlparse
 
 import requests
@@ -49,7 +49,7 @@ REQUEST_HEADERS = {
 
 
 def _today_iso() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return datetime.now(UTC).strftime("%Y-%m-%d")
 
 
 def _is_pdf_url(url: str) -> bool:
