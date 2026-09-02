@@ -102,33 +102,6 @@ def inject_custom_css() -> None:
             box-shadow: 0 4px 10px rgba(11, 95, 255, 0.12);
         }
 
-        /* Citation chips */
-        .citation-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin: 0.5rem 0 0.25rem 0;
-        }
-        .citation-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            background: #F2F5FA;
-            border: 1px solid #DCE4F0;
-            border-radius: 999px;
-            padding: 0.28rem 0.75rem;
-            font-size: 0.8rem;
-            color: #1A1D23;
-            text-decoration: none;
-        }
-        .citation-chip:hover {
-            border-color: #0B5FFF;
-            background: #EAF1FF;
-        }
-        .citation-chip .dot {
-            color: #8A93A3;
-        }
-
         .mf-meta-caption {
             color: #8A93A3;
             font-size: 0.78rem;
@@ -214,17 +187,6 @@ def _avatar_for(role: str) -> str:
     return USER_AVATAR if role == "user" else ASSISTANT_AVATAR
 
 
-def _render_citation_chips(citations: list[dict]) -> None:
-    if not citations:
-        return
-    chips = []
-    for c in citations:
-        label = c["title"] or c["source"]
-        updated = c.get("last_updated", "unknown")
-        chips.append(f'<span class="citation-chip">📄 {label} <span class="dot">·</span> {updated}</span>')
-    st.markdown(f'<div class="citation-wrap">{"".join(chips)}</div>', unsafe_allow_html=True)
-
-
 def render_message(message: dict) -> None:
     with st.chat_message(message["role"], avatar=_avatar_for(message["role"])):
         if message.get("blocked"):
@@ -233,8 +195,6 @@ def render_message(message: dict) -> None:
             st.error(message["content"])
         else:
             st.markdown(message["content"])
-
-        _render_citation_chips(message.get("citations") or [])
 
         meta_bits = []
         if message.get("latency") is not None:
@@ -269,12 +229,6 @@ def process_question(question: str) -> None:
             st.error(response.answer)
         else:
             st.markdown(response.answer)
-
-        citation_dicts = [
-            {"source": c.source, "title": c.title, "last_updated": c.last_updated}
-            for c in response.citations
-        ]
-        _render_citation_chips(citation_dicts)
 
         meta_bits = [f"⏱️ {response.latency_seconds:.1f}s"]
         if response.chunks_used:
