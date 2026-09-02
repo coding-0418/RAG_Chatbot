@@ -31,6 +31,37 @@ class TestReadUrlsCsv:
         rows = ingest._read_urls_csv()
         assert rows[0]["amc"] == "General"
 
+    def test_quoted_url_with_embedded_comma_parses_correctly(self, tmp_path, monkeypatch):
+        """Regression test: a URL containing a literal comma (e.g. a date like
+        "April 28, 2023" that wasn't percent-encoded) must be CSV-quoted,
+        otherwise csv.DictReader silently misaligns every column after it."""
+        csv_path = tmp_path / "urls.csv"
+        csv_path.write_text(
+            "url,title,category,amc\n"
+            '"https://example.com/doc,2023.pdf",Doc,SID,HDFC Mutual Fund\n'
+        )
+        monkeypatch.setattr(ingest, "URLS_CSV", csv_path)
+        rows = ingest._read_urls_csv()
+        assert rows == [
+            {
+                "url": "https://example.com/doc,2023.pdf",
+                "title": "Doc",
+                "category": "SID",
+                "amc": "HDFC Mutual Fund",
+            }
+        ]
+
+    def test_real_urls_csv_has_no_misaligned_rows(self):
+        """Every row in the actual urls.csv must parse into exactly the four
+        expected non-empty fields — catches unquoted commas or other CSV
+        formatting mistakes in the real data file."""
+        rows = ingest._read_urls_csv()
+        assert len(rows) > 0
+        for row in rows:
+            assert set(row.keys()) == {"url", "title", "category", "amc"}
+            assert all(row.values())
+            assert row["url"].startswith(("http://", "https://"))
+
 
 class TestBuildDocument:
     def test_amc_is_stored_in_metadata(self):
