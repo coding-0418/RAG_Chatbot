@@ -43,6 +43,10 @@ MAX_DISTANCE = float(os.getenv("MAX_DISTANCE", "1.1"))
 # like "what about the exit load?". Kept small to bound prompt size and cost.
 HISTORY_TURNS = int(os.getenv("HISTORY_TURNS", "2"))
 
+# Cross-cutting sources (regulator/platform docs) aren't a fund house and are
+# excluded from the AMC picker — mirrors ingest.py's CROSS_CUTTING_AMC_TAGS.
+CROSS_CUTTING_AMC_TAGS = {"Regulatory", "Platform", "General"}
+
 
 @dataclass
 class Citation:
@@ -126,9 +130,10 @@ def _format_context(docs: list[Document]) -> str:
     for idx, doc in enumerate(docs, start=1):
         source = doc.metadata.get("source", "unknown")
         title = doc.metadata.get("title", "")
+        amc = doc.metadata.get("amc", "General")
         last_updated = doc.metadata.get("last_updated", "unknown")
         blocks.append(
-            f"[Chunk {idx}]\nTitle: {title}\nSource: {source}\nLast updated: {last_updated}\nContent:\n{doc.page_content}"
+            f"[Chunk {idx}]\nAMC: {amc}\nTitle: {title}\nSource: {source}\nLast updated: {last_updated}\nContent:\n{doc.page_content}"
         )
     return "\n\n---\n\n".join(blocks)
 
@@ -204,10 +209,22 @@ class MutualFundRAG:
         except Exception:
             return 0
 
-    def retrieve(self, question: str, k: int | None = None) -> list[Document]:
+    def list_amcs(self) -> list[str]:
+        """Distinct fund houses present in the knowledge base, for a UI picker.
+        Excludes cross-cutting regulator/platform sources, which aren't a fund house."""
+        try:
+            result = self.vectorstore._collection.get(include=["metadatas"])
+        except Exception:
+            return []
+        amcs = {m.get("amc") for m in (result.get("metadatas") or []) if m and m.get("amc")}
+        return sorted(a for a in amcs if a not in CROSS_CUTTING_AMC_TAGS)
+
+    def retrieve(self, question: str, k: int | None = None, amc: str | None = None) -> list[Document]:
         """Retrieve top-k chunks, dropping any farther than MAX_DISTANCE
-        (i.e. not relevant enough to be trustworthy grounding)."""
-        results = self.vectorstore.similarity_search_with_score(question, k=k or TOP_K)
+        (i.e. not relevant enough to be trustworthy grounding). When `amc` is
+        given, only chunks tagged with that fund house are considered."""
+        filter_ = {"amc": amc} if amc else None
+        results = self.vectorstore.similarity_search_with_score(question, k=k or TOP_K, filter=filter_)
         kept = [doc for doc, distance in results if distance <= MAX_DISTANCE]
         if not kept and results:
             logger.info(
@@ -218,14 +235,19 @@ class MutualFundRAG:
             )
         return kept
 
-    def answer(self, question: str, history: list[Turn] | None = None) -> RAGResponse:
+    def answer(
+        self,
+        question: str,
+        history: list[Turn] | None = None,
+        amc: str | None = None,
+    ) -> RAGResponse:
         start = time.monotonic()
         history = history or []
         question = question.strip()
 
         if not question:
             return RAGResponse(
-                answer="Please enter a factual question about the covered SBI Mutual Fund schemes or Kuvera platform.",
+                answer="Please enter a factual question about a fund house or scheme covered in the knowledge base.",
                 last_updated=_today_iso(),
             )
 
@@ -257,7 +279,7 @@ class MutualFundRAG:
                 latency_seconds=time.monotonic() - start,
             )
 
-        docs = self.retrieve(_retrieval_query(question, history))
+        docs = self.retrieve(_retrieval_query(question, history), amc=amc)
         if not docs:
             logger.info("No sufficiently relevant chunks found")
             return RAGResponse(

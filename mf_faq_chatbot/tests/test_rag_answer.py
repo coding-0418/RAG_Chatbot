@@ -24,11 +24,17 @@ class FakeChroma:
     instantiating MutualFundRAG (which constructs this class internally)."""
 
     results: list[tuple[Document, float]] = []
+    metadatas: list[dict] = []
+    last_filter: dict | None = "unset"  # sentinel: distinguishes "never called" from None
 
     def __init__(self, *args, **kwargs):
-        self._collection = SimpleNamespace(count=lambda: 123)
+        self._collection = SimpleNamespace(
+            count=lambda: 123,
+            get=lambda include=None: {"metadatas": FakeChroma.metadatas},
+        )
 
-    def similarity_search_with_score(self, query, k=5):
+    def similarity_search_with_score(self, query, k=5, filter=None):
+        FakeChroma.last_filter = filter
         return FakeChroma.results[:k]
 
 
@@ -55,6 +61,8 @@ class FakeChatGroq:
 @pytest.fixture(autouse=True)
 def _reset_fakes():
     FakeChroma.results = []
+    FakeChroma.metadatas = []
+    FakeChroma.last_filter = "unset"
     FakeChatGroq.reply_content = "This is a grounded factual answer."
     FakeChatGroq.should_raise = False
     FakeChatGroq.last_messages = []
@@ -72,10 +80,10 @@ def rag(monkeypatch, tmp_path):
     return MutualFundRAG()
 
 
-def _doc(source: str, title: str, content: str = "chunk content") -> Document:
+def _doc(source: str, title: str, content: str = "chunk content", amc: str = "SBI Mutual Fund") -> Document:
     return Document(
         page_content=content,
-        metadata={"source": source, "title": title, "last_updated": "2026-02-01"},
+        metadata={"source": source, "title": title, "last_updated": "2026-02-01", "amc": amc},
     )
 
 
@@ -150,6 +158,34 @@ class TestLLMFailureHandling:
         response = rag.answer("What is the expense ratio of SBI Bluechip Fund?")
         assert response.error is True
         assert response.answer == SERVICE_ERROR_RESPONSE
+
+
+class TestAmcFilter:
+    def test_no_amc_means_no_filter_applied(self, rag):
+        FakeChroma.results = [(_doc("https://sbimf.com/a", "Doc"), 0.1)]
+        rag.answer("What is the expense ratio of SBI Bluechip Fund?")
+        assert FakeChroma.last_filter is None
+
+    def test_amc_is_passed_through_as_metadata_filter(self, rag):
+        FakeChroma.results = [(_doc("https://sbimf.com/a", "Doc"), 0.1)]
+        rag.answer("What is the expense ratio?", amc="SBI Mutual Fund")
+        assert FakeChroma.last_filter == {"amc": "SBI Mutual Fund"}
+
+    def test_list_amcs_dedupes_and_excludes_cross_cutting_tags(self, rag):
+        FakeChroma.metadatas = [
+            {"amc": "SBI Mutual Fund"},
+            {"amc": "SBI Mutual Fund"},
+            {"amc": "HDFC Mutual Fund"},
+            {"amc": "Regulatory"},
+            {"amc": "Platform"},
+            {"amc": "General"},
+            {},
+        ]
+        assert rag.list_amcs() == ["HDFC Mutual Fund", "SBI Mutual Fund"]
+
+    def test_list_amcs_empty_when_no_metadata(self, rag):
+        FakeChroma.metadatas = []
+        assert rag.list_amcs() == []
 
 
 class TestMultiTurnHistory:
