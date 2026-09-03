@@ -8,10 +8,10 @@ The knowledge base is **multi-AMC by design**: every source is tagged with the f
 
 **AMCs configured in `urls.csv`:** 25 major fund houses (SBI, HDFC, ICICI Prudential, Nippon India, Aditya Birla Sun Life, Kotak Mahindra, Axis, UTI, DSP, Tata, Franklin Templeton, Mirae Asset, Canara Robeco, PGIM India, Sundaram, Bandhan, HSBC, Motilal Oswal, PPFAS, quant, Quantum, Edelweiss, LIC, WhiteOak Capital, Baroda BNP Paribas) — each with its official homepage and Total Expense Ratio disclosure page. Run `python ingest.py` to actually index them.  
 **Schemes with full detail:**
-- **SBI:** SBI Bluechip Fund, SBI Contra Fund, SBI Long Term Equity Fund (ELSS), SBI Magnum Midcap Fund, SBI Small Cap Fund
-- **HDFC:** HDFC Flexi Cap Fund, HDFC Large Cap Fund, HDFC Mid-Cap Opportunities Fund, HDFC ELSS Tax Saver Fund
-- **ICICI Prudential:** Flexicap Fund, Large Cap Fund, ELSS Tax Saver Fund, MidCap Fund
-- **Nippon India:** Large Cap Fund, Small Cap Fund, Flexi Cap Fund, ELSS Tax Saver Fund
+- **SBI:** SBI Bluechip Fund, SBI Contra Fund, SBI Long Term Equity Fund (ELSS), SBI Magnum Midcap Fund, SBI Small Cap Fund, SBI Equity Hybrid Fund, SBI Gilt Fund, SBI Nifty Index Fund, SBI Corporate Bond Fund
+- **HDFC:** HDFC Flexi Cap Fund, HDFC Large Cap Fund, HDFC Mid-Cap Opportunities Fund, HDFC ELSS Tax Saver Fund, HDFC Balanced Advantage Fund, HDFC Corporate Bond Fund, HDFC Short Term Debt Fund, HDFC Nifty 50 Index Fund
+- **ICICI Prudential:** Flexicap Fund, Large Cap Fund, ELSS Tax Saver Fund, MidCap Fund, Balanced Advantage Fund, Corporate Bond Fund, Nifty 50 Index Fund, Short Term Fund
+- **Nippon India:** Large Cap Fund, Small Cap Fund, Flexi Cap Fund, ELSS Tax Saver Fund, Balanced Advantage Fund, Corporate Bond Fund, Index Fund (Nifty 50 Plan), Gilt Securities Fund
 - **Aditya Birla Sun Life:** Frontline Equity Fund, Flexi Cap Fund, Midcap Fund, ELSS Tax Relief 96
 - **Kotak Mahindra:** Flexicap Fund, Midcap Fund, Large Cap Fund (formerly Bluechip), ELSS Tax Saver Fund
 - **Axis:** Bluechip Fund, Flexi Cap Fund, Mid Cap Fund, ELSS Tax Saver Fund (formerly Long Term Equity Fund)
