@@ -16,10 +16,10 @@ The knowledge base is **multi-AMC by design**: every source is tagged with the f
 - **Kotak Mahindra:** Flexicap Fund, Midcap Fund, Large Cap Fund (formerly Bluechip), ELSS Tax Saver Fund, Balanced Advantage Fund, Nifty 50 Index Fund, Corporate Bond Fund, Gilt Fund
 - **Axis:** Bluechip Fund, Flexi Cap Fund, Mid Cap Fund, ELSS Tax Saver Fund (formerly Long Term Equity Fund), Balanced Advantage Fund, Nifty 100 Index Fund, Corporate Bond Fund, Banking and PSU Debt Fund
 - **UTI:** Mastershare Unit Scheme, Flexi Cap Fund, Mid Cap Fund, ELSS Tax Saver Fund, Balanced Advantage Fund, Corporate Bond Fund, Nifty 50 Index Fund, Gilt Fund
-- **DSP:** Flexi Cap Fund, Mid Cap Fund, Large Cap Fund (formerly Top 100 Equity Fund), ELSS Tax Saver Fund
-- **Tata:** Large Cap Fund, Mid Cap Fund, Flexi Cap Fund, ELSS Tax Saver Fund
-- **Franklin Templeton:** Flexi Cap Fund, Large Cap Fund (formerly Bluechip), ELSS Tax Saver Fund, Small Cap Fund (formerly Smaller Companies Fund)
-- **Mirae Asset:** ELSS Tax Saver Fund, Flexi Cap Fund, Midcap Fund, Large & Midcap Fund
+- **DSP:** Flexi Cap Fund, Mid Cap Fund, Large Cap Fund (formerly Top 100 Equity Fund), ELSS Tax Saver Fund, Dynamic Asset Allocation Fund, Equity Savings Fund, Corporate Bond Fund, Nifty 50 Index Fund
+- **Tata:** Large Cap Fund, Mid Cap Fund, Flexi Cap Fund, ELSS Tax Saver Fund, Balanced Advantage Fund, Corporate Bond Fund, Nifty 50 Index Fund, Short Term Bond Fund
+- **Franklin Templeton:** Flexi Cap Fund, Large Cap Fund (formerly Bluechip), ELSS Tax Saver Fund, Small Cap Fund (formerly Smaller Companies Fund), Balanced Advantage Fund, Corporate Debt Fund, NSE Nifty 50 Index Fund, Banking and PSU Debt Fund
+- **Mirae Asset:** ELSS Tax Saver Fund, Flexi Cap Fund, Midcap Fund, Large & Midcap Fund, Balanced Advantage Fund, Dynamic Bond Fund, Nifty 50 Index Fund, Corporate Bond Fund
 - **Canara Robeco:** Bluechip Equity Fund, ELSS Tax Saver Fund, Emerging Equities Fund, Flexi Cap Fund
 - **PGIM India:** Flexi Cap Fund, ELSS Tax Saver Fund, Large and Mid Cap Fund, Midcap Fund (formerly Midcap Opportunities Fund)
 - **Sundaram:** Large and Mid Cap Fund, Flexi Cap Fund, Multi Cap Fund, Mid Cap Fund
