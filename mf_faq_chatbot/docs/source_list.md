@@ -86,140 +86,156 @@ Auto-generated to match `urls.csv` — regenerate this file (not hand-edit) when
 |---|-------|-----|----------|
 | 47 | Axis Mutual Fund Homepage | https://www.axismf.com/ | Axis Homepage |
 | 48 | Axis Mutual Fund Statutory Disclosures (TER) | https://www.axismf.com/statutory-disclosures | Axis TER |
+| 49 | Axis Bluechip Fund Scheme Page | https://www.axismf.com/mutual-funds/equity-funds/axis-bluechip-fund | Axis Scheme |
+| 50 | Axis Flexi Cap Fund Scheme Page | https://www.axismf.com/mutual-funds/equity-funds/axis-flexi-cap-fund/ml-dg/direct | Axis Scheme |
+| 51 | Axis Mid Cap Fund Scheme Page | https://www.axismf.com/mutual-funds/equity-funds/axis-mid-cap-fund/mc-dg/direct | Axis Scheme |
+| 52 | Axis ELSS Tax Saver Fund (formerly Long Term Equity Fund) Scheme Page | https://www.axismf.com/mutual-funds/equity-funds/axis-elss-tax-saver-fund/ts-dg/direct | Axis Scheme |
 
 ## UTI Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 49 | UTI Mutual Fund Homepage | https://www.utimf.com/ | UTI Homepage |
-| 50 | UTI Mutual Fund Total Expense Ratio Disclosure | https://www.utimf.com/statutory-disclosures/total-expense-ratio-ter-mutual-fund-schemes-scheme-code | UTI TER |
+| 53 | UTI Mutual Fund Homepage | https://www.utimf.com/ | UTI Homepage |
+| 54 | UTI Mutual Fund Total Expense Ratio Disclosure | https://www.utimf.com/statutory-disclosures/total-expense-ratio-ter-mutual-fund-schemes-scheme-code | UTI TER |
+| 55 | UTI Mastershare Unit Scheme Page | https://www.utimf.com/mutual-funds/uti-mastershare-unit-scheme | UTI Scheme |
+| 56 | UTI Flexi Cap Fund Scheme Page | https://www.utimf.com/mutual-funds/uti-flexi-cap-fund-formerly-known-uti-equity-fund | UTI Scheme |
+| 57 | UTI Mid Cap Fund Scheme Page | https://www.utimf.com/mutual-funds/uti-mid-cap-fund | UTI Scheme |
+| 58 | UTI ELSS Tax Saver Fund Scheme Page | https://www.utimf.com/mutual-funds/uti-elss-tax-saver-fund | UTI Scheme |
 
 ## DSP Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 51 | DSP Mutual Fund Homepage | https://www.dspim.com/ | DSP Homepage |
-| 52 | DSP Mutual Fund Total Expense Ratio Disclosure | https://www.dspim.com/ter | DSP TER |
+| 59 | DSP Mutual Fund Homepage | https://www.dspim.com/ | DSP Homepage |
+| 60 | DSP Mutual Fund Total Expense Ratio Disclosure | https://www.dspim.com/ter | DSP TER |
+| 61 | DSP Flexi Cap Fund Scheme Page | https://www.dspim.com/invest/mutual-fund-schemes/equity-funds/flexi-cap-fund/dspeq-regular-growth | DSP Scheme |
+| 62 | DSP Mid Cap Fund Scheme Page | https://www.dspim.com/invest/mutual-fund-schemes/equity-funds/mid-cap-fund/dspsm-regular-growth | DSP Scheme |
+| 63 | DSP Large Cap Fund (formerly Top 100 Equity Fund) Scheme Page | https://www.dspim.com/invest/mutual-fund-schemes/equity-funds/top-100-equity-fund/dspte-regular-growth | DSP Scheme |
+| 64 | DSP ELSS Tax Saver Fund Scheme Page | https://www.dspim.com/invest/mutual-fund-schemes/equity-funds/elss-tax-saver-fund/dspts-regular-growth | DSP Scheme |
 
 ## Tata Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 53 | Tata Mutual Fund Homepage | https://www.tatamutualfund.com/ | Tata Homepage |
-| 54 | Tata Mutual Fund Total Expense Ratio Notice | https://www.tatamutualfund.com/expense-ratio/ter-notice | Tata TER |
+| 65 | Tata Mutual Fund Homepage | https://www.tatamutualfund.com/ | Tata Homepage |
+| 66 | Tata Mutual Fund Total Expense Ratio Notice | https://www.tatamutualfund.com/expense-ratio/ter-notice | Tata TER |
+| 67 | Tata Large Cap Fund Scheme Page | https://www.tatamutualfund.com/mutual-funds/tata-large-cap-fund-direct-growth | Tata Scheme |
+| 68 | Tata Mid Cap Fund Scheme Page | https://www.tatamutualfund.com/mutual-funds/tata-mid-cap-fund-direct-growth | Tata Scheme |
+| 69 | Tata Flexi Cap Fund Scheme Page | https://www.tatamutualfund.com/mutual-funds/tata-flexi-cap-fund-direct-growth | Tata Scheme |
+| 70 | Tata ELSS Tax Saver Fund Scheme Page | https://www.tatamutualfund.com/mutual-funds/tata-elss-tax-saver-fund-direct-growth | Tata Scheme |
 
 ## Franklin Templeton Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 55 | Franklin Templeton Mutual Fund India Homepage | https://www.franklintempletonindia.com/ | Franklin Templeton Homepage |
-| 56 | Franklin Templeton Mutual Fund India Reports (TER) | https://www.franklintempletonindia.com/reports | Franklin Templeton TER |
+| 71 | Franklin Templeton Mutual Fund India Homepage | https://www.franklintempletonindia.com/ | Franklin Templeton Homepage |
+| 72 | Franklin Templeton Mutual Fund India Reports (TER) | https://www.franklintempletonindia.com/reports | Franklin Templeton TER |
 
 ## Mirae Asset Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 57 | Mirae Asset Mutual Fund Homepage | https://www.miraeassetmf.co.in/ | Mirae Asset Homepage |
-| 58 | Mirae Asset Mutual Fund Total Expense Ratio Disclosure | https://www.miraeassetmf.co.in/downloads/statutory-disclosure/total-expense-ratio | Mirae Asset TER |
+| 73 | Mirae Asset Mutual Fund Homepage | https://www.miraeassetmf.co.in/ | Mirae Asset Homepage |
+| 74 | Mirae Asset Mutual Fund Total Expense Ratio Disclosure | https://www.miraeassetmf.co.in/downloads/statutory-disclosure/total-expense-ratio | Mirae Asset TER |
 
 ## Canara Robeco Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 59 | Canara Robeco Mutual Fund Homepage | https://www.canararobeco.com/ | Canara Robeco Homepage |
-| 60 | Canara Robeco Mutual Fund Expense Ratio Disclosure | https://www.canararobeco.com/expense-ratio | Canara Robeco TER |
+| 75 | Canara Robeco Mutual Fund Homepage | https://www.canararobeco.com/ | Canara Robeco Homepage |
+| 76 | Canara Robeco Mutual Fund Expense Ratio Disclosure | https://www.canararobeco.com/expense-ratio | Canara Robeco TER |
 
 ## PGIM India Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 61 | PGIM India Mutual Fund Homepage | https://www.pgimindia.com/mutual-funds/ | PGIM India Homepage |
-| 62 | PGIM India Mutual Fund Total Expense Ratio Disclosure | https://pgimindiamf.idealake.com/statutory-disclosure/portfolio-related/expense-ratio | PGIM India TER |
+| 77 | PGIM India Mutual Fund Homepage | https://www.pgimindia.com/mutual-funds/ | PGIM India Homepage |
+| 78 | PGIM India Mutual Fund Total Expense Ratio Disclosure | https://pgimindiamf.idealake.com/statutory-disclosure/portfolio-related/expense-ratio | PGIM India TER |
 
 ## Sundaram Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 63 | Sundaram Mutual Fund Homepage | https://www.sundarammutual.com/ | Sundaram Homepage |
-| 64 | Sundaram Mutual Fund Total Expense Ratio Disclosure | https://www.sundarammutual.com/ter | Sundaram TER |
+| 79 | Sundaram Mutual Fund Homepage | https://www.sundarammutual.com/ | Sundaram Homepage |
+| 80 | Sundaram Mutual Fund Total Expense Ratio Disclosure | https://www.sundarammutual.com/ter | Sundaram TER |
 
 ## Bandhan Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 65 | Bandhan Mutual Fund Homepage | https://bandhanmutual.com/ | Bandhan Homepage |
-| 66 | Bandhan Mutual Fund Total Expense Ratio Disclosure | https://partners.bandhanmutual.com/statutory-disclosures/total-expense-ratio | Bandhan TER |
+| 81 | Bandhan Mutual Fund Homepage | https://bandhanmutual.com/ | Bandhan Homepage |
+| 82 | Bandhan Mutual Fund Total Expense Ratio Disclosure | https://partners.bandhanmutual.com/statutory-disclosures/total-expense-ratio | Bandhan TER |
 
 ## HSBC Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 67 | HSBC Mutual Fund India Homepage | https://www.assetmanagement.hsbc.co.in/en/mutual-funds | HSBC Homepage |
+| 83 | HSBC Mutual Fund India Homepage | https://www.assetmanagement.hsbc.co.in/en/mutual-funds | HSBC Homepage |
 
 ## Motilal Oswal Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 68 | Motilal Oswal Mutual Fund Homepage | https://www.motilaloswalmf.com/ | Motilal Oswal Homepage |
-| 69 | Motilal Oswal Mutual Fund NAV and Total Expense Ratio | https://www.motilaloswalmf.com/nav-ter | Motilal Oswal TER |
+| 84 | Motilal Oswal Mutual Fund Homepage | https://www.motilaloswalmf.com/ | Motilal Oswal Homepage |
+| 85 | Motilal Oswal Mutual Fund NAV and Total Expense Ratio | https://www.motilaloswalmf.com/nav-ter | Motilal Oswal TER |
 
 ## PPFAS Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 70 | PPFAS Mutual Fund Homepage | https://amc.ppfas.com/ | PPFAS Homepage |
-| 71 | PPFAS Mutual Fund Total Expense Ratio Disclosure | https://amc.ppfas.com/statutory-disclosures/total-expense-ratio-TER/ | PPFAS TER |
+| 86 | PPFAS Mutual Fund Homepage | https://amc.ppfas.com/ | PPFAS Homepage |
+| 87 | PPFAS Mutual Fund Total Expense Ratio Disclosure | https://amc.ppfas.com/statutory-disclosures/total-expense-ratio-TER/ | PPFAS TER |
 
 ## quant Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 72 | quant Mutual Fund Homepage | https://quantmutual.com/ | Quant Homepage |
-| 73 | quant Mutual Fund Total Expense Ratio Disclosure | https://quantmutual.com/Total-Expense-Ratio | Quant TER |
+| 88 | quant Mutual Fund Homepage | https://quantmutual.com/ | Quant Homepage |
+| 89 | quant Mutual Fund Total Expense Ratio Disclosure | https://quantmutual.com/Total-Expense-Ratio | Quant TER |
 
 ## Quantum Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 74 | Quantum Mutual Fund Homepage | https://quantumamc.com/ | Quantum Homepage |
-| 75 | Quantum Mutual Fund Total Expense Ratio Disclosure | https://quantumamc.com/total-expense-ratio/report-1 | Quantum TER |
+| 90 | Quantum Mutual Fund Homepage | https://quantumamc.com/ | Quantum Homepage |
+| 91 | Quantum Mutual Fund Total Expense Ratio Disclosure | https://quantumamc.com/total-expense-ratio/report-1 | Quantum TER |
 
 ## Edelweiss Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 76 | Edelweiss Mutual Fund Homepage | https://www.edelweissmf.com/ | Edelweiss Homepage |
+| 92 | Edelweiss Mutual Fund Homepage | https://www.edelweissmf.com/ | Edelweiss Homepage |
 
 ## LIC Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 77 | LIC Mutual Fund Homepage | https://www.licmf.com/ | LIC Homepage |
-| 78 | LIC Mutual Fund Total Expense Ratio Disclosure | https://www.licmf.com/downloads/total-expense-ratio | LIC TER |
+| 93 | LIC Mutual Fund Homepage | https://www.licmf.com/ | LIC Homepage |
+| 94 | LIC Mutual Fund Total Expense Ratio Disclosure | https://www.licmf.com/downloads/total-expense-ratio | LIC TER |
 
 ## WhiteOak Capital Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 79 | WhiteOak Capital Mutual Fund Homepage | https://mf.whiteoakamc.com/ | WhiteOak Homepage |
-| 80 | WhiteOak Capital Mutual Fund Total Expense Ratio Disclosure | https://mf.whiteoakamc.com/regulatory-disclosures/total-expense-ratio | WhiteOak TER |
+| 95 | WhiteOak Capital Mutual Fund Homepage | https://mf.whiteoakamc.com/ | WhiteOak Homepage |
+| 96 | WhiteOak Capital Mutual Fund Total Expense Ratio Disclosure | https://mf.whiteoakamc.com/regulatory-disclosures/total-expense-ratio | WhiteOak TER |
 
 ## Baroda BNP Paribas Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 81 | Baroda BNP Paribas Mutual Fund Homepage | https://www.barodabnpparibasmf.in/ | Baroda BNP Paribas Homepage |
-| 82 | Baroda BNP Paribas Mutual Fund Total Expense Ratio Disclosure | https://www.barodabnpparibasmf.in/downloads/total-expense-ratio-of-mutual-fund-schemes | Baroda BNP Paribas TER |
+| 97 | Baroda BNP Paribas Mutual Fund Homepage | https://www.barodabnpparibasmf.in/ | Baroda BNP Paribas Homepage |
+| 98 | Baroda BNP Paribas Mutual Fund Total Expense Ratio Disclosure | https://www.barodabnpparibasmf.in/downloads/total-expense-ratio-of-mutual-fund-schemes | Baroda BNP Paribas TER |
 
 ## Regulatory
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 83 | SEBI Investor Riskometer Guide | https://investor.sebi.gov.in/riskometer.html | SEBI |
-| 84 | SEBI Risk-o-meter Circular | https://www.sebi.gov.in/legal/circulars/oct-2020/circular-on-product-labeling-in-mutual-fund-schemes-risk-o-meter_47796.html | SEBI |
-| 85 | SEBI Mutual Fund Investor FAQs | https://www.sebi.gov.in/sebi_data/faqfiles/sep-2024/1727242783639.pdf | SEBI |
-| 86 | AMFI Investor Corner | https://www.amfiindia.com/investor | AMFI |
-| 87 | AMFI How to Invest and Investor Awareness | https://www.amfiindia.com/investor/investor-awareness-program | AMFI |
+| 99 | SEBI Investor Riskometer Guide | https://investor.sebi.gov.in/riskometer.html | SEBI |
+| 100 | SEBI Risk-o-meter Circular | https://www.sebi.gov.in/legal/circulars/oct-2020/circular-on-product-labeling-in-mutual-fund-schemes-risk-o-meter_47796.html | SEBI |
+| 101 | SEBI Mutual Fund Investor FAQs | https://www.sebi.gov.in/sebi_data/faqfiles/sep-2024/1727242783639.pdf | SEBI |
+| 102 | AMFI Investor Corner | https://www.amfiindia.com/investor | AMFI |
+| 103 | AMFI How to Invest and Investor Awareness | https://www.amfiindia.com/investor/investor-awareness-program | AMFI |
 
 ## Local Reference Files (`data/`)
 
@@ -228,4 +244,4 @@ Structured summaries mirroring official disclosures are stored locally for resil
 - `data/sbi_scheme_reference.md`
 - `data/regulatory_reference.md`
 
-**Total official URLs in `urls.csv`: 87**
+**Total official URLs in `urls.csv`: 103**
