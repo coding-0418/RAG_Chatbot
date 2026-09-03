@@ -22,8 +22,19 @@ The knowledge base is **multi-AMC by design**: every source is tagged with the f
 - **Mirae Asset:** ELSS Tax Saver Fund, Flexi Cap Fund, Midcap Fund, Large & Midcap Fund
 - **Canara Robeco:** Bluechip Equity Fund, ELSS Tax Saver Fund, Emerging Equities Fund, Flexi Cap Fund
 - **PGIM India:** Flexi Cap Fund, ELSS Tax Saver Fund, Large and Mid Cap Fund, Midcap Fund (formerly Midcap Opportunities Fund)
+- **Sundaram:** Large and Mid Cap Fund, Flexi Cap Fund, Multi Cap Fund, Mid Cap Fund
+- **Bandhan:** Flexi Cap Fund, Multi Cap Fund, Focused Equity Fund, Large Cap Fund
+- **HSBC:** Large Cap Fund, Large and Mid Cap Fund, Multi Cap Fund, Flexi Cap Fund
+- **Motilal Oswal:** Large and Midcap Fund, Flexi Cap Fund, Nifty Midcap 150 Index Fund, Midcap Fund
+- **PPFAS:** Parag Parikh Flexi Cap Fund, ELSS Tax Saver Fund, Conservative Hybrid Fund, Liquid Fund
+- **quant:** Flexi Cap Fund, ELSS Tax Saver Fund, Multi Cap Fund (formerly Active Fund), Small Cap Fund
+- **Quantum:** ELSS Tax Saving Fund, Long Term Equity Value Fund, Ethical Fund
+- **Edelweiss:** Flexi Cap Fund, Large Cap Fund, Multi Cap Fund, Mid Cap Fund
+- **LIC:** Large Cap Fund, ELSS Tax Saver Fund, Large and Mid Cap Fund, Multi Cap Fund
+- **WhiteOak Capital:** Flexi Cap Fund, Large Cap Fund, Large and Mid Cap Fund, ELSS Tax Saver Fund
+- **Baroda BNP Paribas:** Flexi Cap Fund, Large Cap Fund, ELSS Tax Saver Fund, Mid Cap Fund
 
-All other configured AMCs are currently homepage/TER-level only — see below to deepen them the same way.
+All 25 configured AMCs now have scheme-level depth. See [Adding Another Fund House](#adding-another-fund-house) to add a new AMC or deepen coverage further (additional schemes, factsheets, SID/KIM PDFs).
 
 > **Disclaimer:** This assistant provides factual information from official mutual fund sources and does not provide investment advice, recommendations, return projections, or portfolio guidance.
 
@@ -260,7 +271,7 @@ dropped before generation rather than passed to the LLM as weak grounding — th
 6. **Full re-index on ingest:** `ingest.py` rebuilds the entire vector store rather than diffing changes — fine for a periodic scheduled job, but there's no incremental/delta ingestion yet.
 7. **No authentication:** the Streamlit app has no login/SSO layer. A lightweight per-session rate limit is built in (throttles rapid repeat questions), but a shared-network deployment should sit behind SSO or a reverse-proxy auth layer before going further than a demo.
 8. **Regex-based guardrails:** investment-advice and PII detection are pattern-based, not an LLM classifier — fast and dependency-free, but rephrasing can evade them. Treat as a first line of defense, not a compliance guarantee.
-9. **Homepage/TER-level coverage for most AMCs:** `urls.csv` carries verified homepage and Total Expense Ratio sources for 25 major fund houses, and scheme-level depth (individual scheme pages, factsheets, SID/KIM PDFs) for 14 of them — SBI, HDFC, ICICI Prudential, Nippon India, Aditya Birla Sun Life, Kotak Mahindra, Axis, UTI, DSP, Tata, Franklin Templeton, Mirae Asset, Canara Robeco, and PGIM India's most popular funds. The remaining 11 AMCs will answer TER/general questions but likely hit "not found" for scheme-specific facts until their own scheme-level sources are added (same pattern as the existing rows in `urls.csv`).
+9. **Not every scheme per AMC:** `urls.csv` carries verified homepage, Total Expense Ratio, and scheme-level sources (individual scheme pages, factsheets, SID/KIM PDFs) for all 25 configured fund houses, but only for each AMC's 3-4 most popular schemes — not its entire fund lineup. A question about a scheme not yet in `urls.csv` will correctly answer "I could not find this information" rather than fabricate details. Add more scheme-level rows the same way (see [Adding Another Fund House](#adding-another-fund-house)) to widen coverage within an already-listed AMC.
 10. **Cross-AMC comparison guardrail is unresolved:** the current guardrail blocks any "which fund is better" style comparison outright, including a neutral factual side-by-side (e.g. "what's each fund's expense ratio") across AMCs. Whether to allow that narrower case is a compliance decision that hasn't been made yet — until it is, comparisons stay blocked entirely.
 
 ---

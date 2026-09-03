@@ -174,90 +174,124 @@ Auto-generated to match `urls.csv` — regenerate this file (not hand-edit) when
 |---|-------|-----|----------|
 | 95 | Sundaram Mutual Fund Homepage | https://www.sundarammutual.com/ | Sundaram Homepage |
 | 96 | Sundaram Mutual Fund Total Expense Ratio Disclosure | https://www.sundarammutual.com/ter | Sundaram TER |
+| 97 | Sundaram Large and Mid Cap Fund Scheme Page | https://www.sundarammutual.com/Fund/Sundaram-Large-and-MidCap-Fund | Sundaram Scheme |
+| 98 | Sundaram Flexi Cap Fund Scheme Page | https://www.sundarammutual.com/fund/sundaram-flexi-cap-fund | Sundaram Scheme |
+| 99 | Sundaram Multi Cap Fund Scheme Page | https://www.sundarammutual.com/fund/multicap-fund | Sundaram Scheme |
+| 100 | Sundaram Mid Cap Fund Scheme Page | https://www.sundarammutual.com/Fund/Sundaram-Mid-Cap-Fund | Sundaram Scheme |
 
 ## Bandhan Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 97 | Bandhan Mutual Fund Homepage | https://bandhanmutual.com/ | Bandhan Homepage |
-| 98 | Bandhan Mutual Fund Total Expense Ratio Disclosure | https://partners.bandhanmutual.com/statutory-disclosures/total-expense-ratio | Bandhan TER |
+| 101 | Bandhan Mutual Fund Homepage | https://bandhanmutual.com/ | Bandhan Homepage |
+| 102 | Bandhan Mutual Fund Total Expense Ratio Disclosure | https://partners.bandhanmutual.com/statutory-disclosures/total-expense-ratio | Bandhan TER |
+| 103 | Bandhan Flexi Cap Fund Scheme Page | https://bandhanmutual.com/mutual-funds/equity-funds/bandhan-flexi-cap-fund/regular | Bandhan Scheme |
+| 104 | Bandhan Multi Cap Fund Scheme Page | https://partners.bandhanmutual.com/mutual-funds/equity-funds/bandhan-multi-cap-fund/regular | Bandhan Scheme |
+| 105 | Bandhan Focused Equity Fund Scheme Page | https://partners.bandhanmutual.com/mutual-funds/equity-funds/bandhan-focused-equity-fund/regular | Bandhan Scheme |
+| 106 | Bandhan Large Cap Fund Scheme Page | https://partners.bandhanmutual.com/mutual-funds/equity-funds/bandhan-large-cap-fund/regular | Bandhan Scheme |
 
 ## HSBC Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 99 | HSBC Mutual Fund India Homepage | https://www.assetmanagement.hsbc.co.in/en/mutual-funds | HSBC Homepage |
+| 107 | HSBC Mutual Fund India Homepage | https://www.assetmanagement.hsbc.co.in/en/mutual-funds | HSBC Homepage |
+| 108 | HSBC Large Cap Fund Scheme Page | https://www.assetmanagement.hsbc.co.in/en/mutual-funds/investment-expertise/equity-funds/hsbc-large-cap-fund | HSBC Scheme |
+| 109 | HSBC Large and Mid Cap Fund Scheme Page | https://www.assetmanagement.hsbc.co.in/en/mutual-funds/investment-expertise/equity-funds/hsbc-large-mid-cap-fund | HSBC Scheme |
+| 110 | HSBC Multi Cap Fund Scheme Page | https://www.assetmanagement.hsbc.co.in/en/mutual-funds/investment-expertise/equity-funds/hsbc-multi-cap-fund | HSBC Scheme |
+| 111 | HSBC Flexi Cap Fund Scheme Page | https://www.assetmanagement.hsbc.co.in/en/mutual-funds/investment-expertise/equity-funds/hsbc-flexi-cap-fund | HSBC Scheme |
 
 ## Motilal Oswal Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 100 | Motilal Oswal Mutual Fund Homepage | https://www.motilaloswalmf.com/ | Motilal Oswal Homepage |
-| 101 | Motilal Oswal Mutual Fund NAV and Total Expense Ratio | https://www.motilaloswalmf.com/nav-ter | Motilal Oswal TER |
+| 112 | Motilal Oswal Mutual Fund Homepage | https://www.motilaloswalmf.com/ | Motilal Oswal Homepage |
+| 113 | Motilal Oswal Mutual Fund NAV and Total Expense Ratio | https://www.motilaloswalmf.com/nav-ter | Motilal Oswal TER |
+| 114 | Motilal Oswal Large and Midcap Fund Scheme Page | https://www.motilaloswalmf.com/mutual-funds/motilal-oswal-large-and-midcap-fund | Motilal Oswal Scheme |
+| 115 | Motilal Oswal Flexi Cap Fund Scheme Page | https://www.motilaloswalmf.com/mutual-funds/motilal-oswal-flexi-cap-fund | Motilal Oswal Scheme |
+| 116 | Motilal Oswal Nifty Midcap 150 Index Fund Scheme Page | https://www.motilaloswalmf.com/mutual-funds/motilal-oswal-nifty-midcap-150-index-fund | Motilal Oswal Scheme |
+| 117 | Motilal Oswal Midcap Fund Scheme Information Document | https://www.motilaloswalmf.com/CMS/assets/uploads/Documents/80964-sid-motilal-oswal-midcap-fund.pdf | Motilal Oswal SID |
 
 ## PPFAS Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 102 | PPFAS Mutual Fund Homepage | https://amc.ppfas.com/ | PPFAS Homepage |
-| 103 | PPFAS Mutual Fund Total Expense Ratio Disclosure | https://amc.ppfas.com/statutory-disclosures/total-expense-ratio-TER/ | PPFAS TER |
+| 118 | PPFAS Mutual Fund Homepage | https://amc.ppfas.com/ | PPFAS Homepage |
+| 119 | PPFAS Mutual Fund Total Expense Ratio Disclosure | https://amc.ppfas.com/statutory-disclosures/total-expense-ratio-TER/ | PPFAS TER |
+| 120 | Parag Parikh Flexi Cap Fund Scheme Page | https://amc.ppfas.com/schemes/parag-parikh-flexi-cap-fund/ | PPFAS Scheme |
+| 121 | Parag Parikh ELSS Tax Saver Fund Scheme Page | https://amc.ppfas.com/schemes/parag-parikh-tax-saver-fund/ | PPFAS Scheme |
+| 122 | Parag Parikh Conservative Hybrid Fund Scheme Page | https://amc.ppfas.com/schemes/parag-parikh-conservative-hybrid-fund/ | PPFAS Scheme |
+| 123 | Parag Parikh Liquid Fund Scheme Page | https://amc.ppfas.com/schemes/parag-parikh-liquid-fund/ | PPFAS Scheme |
 
 ## quant Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 104 | quant Mutual Fund Homepage | https://quantmutual.com/ | Quant Homepage |
-| 105 | quant Mutual Fund Total Expense Ratio Disclosure | https://quantmutual.com/Total-Expense-Ratio | Quant TER |
+| 124 | quant Mutual Fund Homepage | https://quantmutual.com/ | Quant Homepage |
+| 125 | quant Mutual Fund Total Expense Ratio Disclosure | https://quantmutual.com/Total-Expense-Ratio | Quant TER |
+| 126 | quant Flexi Cap Fund Scheme Page | https://quantmutual.com/equity/Quant-flexi-cap-fund | Quant Scheme |
+| 127 | quant ELSS Tax Saver Fund Scheme Page | https://quantmutual.com/equity/tax-plan | Quant Scheme |
+| 128 | quant Multi Cap Fund (formerly quant Active Fund) Scheme Page | https://quantmutual.com/equity/quant-growth | Quant Scheme |
+| 129 | quant Small Cap Fund Scheme Information Document | https://quantmutual.com/Admin/SIDPdf/quant%20Small%20Cap%20Fund_SID%202023.pdf | Quant SID |
 
 ## Quantum Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 106 | Quantum Mutual Fund Homepage | https://quantumamc.com/ | Quantum Homepage |
-| 107 | Quantum Mutual Fund Total Expense Ratio Disclosure | https://quantumamc.com/total-expense-ratio/report-1 | Quantum TER |
+| 130 | Quantum Mutual Fund Homepage | https://quantumamc.com/ | Quantum Homepage |
+| 131 | Quantum Mutual Fund Total Expense Ratio Disclosure | https://quantumamc.com/total-expense-ratio/report-1 | Quantum TER |
+| 132 | Quantum ELSS Tax Saving Fund Scheme Page | https://quantumamc.com/mutual-funds/equity-funds/quantum-elss-tax-saving-fund/3 | Quantum Scheme |
+| 133 | Quantum Long Term Equity Value Fund Scheme Page | https://www.quantumamc.com/mutual-funds/equity-funds/quantum-long-term-equity-value-fund/2 | Quantum Scheme |
+| 134 | Quantum Ethical Fund Scheme Page | https://www.quantumamc.com/equity-funds/quantum-ethical-fund | Quantum Scheme |
 
 ## Edelweiss Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 108 | Edelweiss Mutual Fund Homepage | https://www.edelweissmf.com/ | Edelweiss Homepage |
+| 135 | Edelweiss Mutual Fund Homepage | https://www.edelweissmf.com/ | Edelweiss Homepage |
+| 136 | Edelweiss Flexi Cap Fund Scheme Page | https://www.edelweissmf.com/types-of-mutual-funds/equity-fund/edelweiss-flexicap-fund | Edelweiss Scheme |
+| 137 | Edelweiss Large Cap Fund Scheme Page | https://www.edelweissmf.com/types-of-mutual-funds/equity-fund/edelweiss-large-cap-fund | Edelweiss Scheme |
+| 138 | Edelweiss Multi Cap Fund Scheme Page | https://www.edelweissmf.com/types-of-mutual-funds/equity-fund/edelweiss-multi-cap-fund | Edelweiss Scheme |
+| 139 | Edelweiss Mid Cap Fund Scheme Page | https://www.edelweissmf.com/types-of-mutual-funds/equity-fund/edelweiss-midcap-fund | Edelweiss Scheme |
 
 ## LIC Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 109 | LIC Mutual Fund Homepage | https://www.licmf.com/ | LIC Homepage |
-| 110 | LIC Mutual Fund Total Expense Ratio Disclosure | https://www.licmf.com/downloads/total-expense-ratio | LIC TER |
+| 140 | LIC Mutual Fund Homepage | https://www.licmf.com/ | LIC Homepage |
+| 141 | LIC Mutual Fund Total Expense Ratio Disclosure | https://www.licmf.com/downloads/total-expense-ratio | LIC TER |
+| 142 | LIC MF Large Cap Fund Scheme Page | https://www.licmf.com/snapshot/lic-mf-large-cap-fund/LIC19 | LIC Scheme |
+| 143 | LIC MF ELSS Tax Saver Scheme Page | https://www.licmf.com/snapshot/lic-mf-elss-tax-saver/LIC28 | LIC Scheme |
+| 144 | LIC MF Large and Mid Cap Fund Scheme Page | https://www.licmf.com/snapshot/lic-mf-large-&-midcap-fund/LIC170 | LIC Scheme |
+| 145 | LIC MF Multi Cap Fund Scheme Page | https://www.licmf.com/snapshot/lic-mf-multi-cap-fund/LIC184 | LIC Scheme |
 
 ## WhiteOak Capital Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 111 | WhiteOak Capital Mutual Fund Homepage | https://mf.whiteoakamc.com/ | WhiteOak Homepage |
-| 112 | WhiteOak Capital Mutual Fund Total Expense Ratio Disclosure | https://mf.whiteoakamc.com/regulatory-disclosures/total-expense-ratio | WhiteOak TER |
+| 146 | WhiteOak Capital Mutual Fund Homepage | https://mf.whiteoakamc.com/ | WhiteOak Homepage |
+| 147 | WhiteOak Capital Mutual Fund Total Expense Ratio Disclosure | https://mf.whiteoakamc.com/regulatory-disclosures/total-expense-ratio | WhiteOak TER |
+| 148 | WhiteOak Capital Flexi Cap Fund Scheme Page | https://mf.whiteoakamc.com/scheme/whiteoak-capital-flexi-cap-fund-regular-growth | WhiteOak Scheme |
+| 149 | WhiteOak Capital Large Cap Fund Scheme Page | https://mf.whiteoakamc.com/scheme/whiteoak-capital-large-cap-fund-direct-growth | WhiteOak Scheme |
+| 150 | WhiteOak Capital Large and Mid Cap Fund Scheme Page | https://mf.whiteoakamc.com/scheme/whiteoak-capital-large-and-mid-cap-fund-direct-growth | WhiteOak Scheme |
+| 151 | WhiteOak Capital ELSS Tax Saver Fund Scheme Page | https://mf.whiteoakamc.com/scheme/whiteoak-capital-elss-tax-saver-fund-direct-growth | WhiteOak Scheme |
 
 ## Baroda BNP Paribas Mutual Fund
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 113 | Baroda BNP Paribas Mutual Fund Homepage | https://www.barodabnpparibasmf.in/ | Baroda BNP Paribas Homepage |
-| 114 | Baroda BNP Paribas Mutual Fund Total Expense Ratio Disclosure | https://www.barodabnpparibasmf.in/downloads/total-expense-ratio-of-mutual-fund-schemes | Baroda BNP Paribas TER |
+| 152 | Baroda BNP Paribas Mutual Fund Homepage | https://www.barodabnpparibasmf.in/ | Baroda BNP Paribas Homepage |
+| 153 | Baroda BNP Paribas Mutual Fund Total Expense Ratio Disclosure | https://www.barodabnpparibasmf.in/downloads/total-expense-ratio-of-mutual-fund-schemes | Baroda BNP Paribas TER |
+| 154 | Baroda BNP Paribas Flexi Cap Fund Scheme Page | https://www.barodabnpparibasmf.in/mutual-fund-schemes/equity-funds/baroda-bnp-paribas-flexi-cap-fund/direct-growth | Baroda BNP Paribas Scheme |
+| 155 | Baroda BNP Paribas Large Cap Fund Scheme Page | https://www.barodabnpparibasmf.in/mutual-fund-schemes/equity-funds/baroda-bnp-paribas-large-cap-fund/direct-growth | Baroda BNP Paribas Scheme |
+| 156 | Baroda BNP Paribas ELSS Tax Saver Fund Scheme Page | https://www.barodabnpparibasmf.in/mutual-fund-schemes/equity-funds/baroda-bnp-paribas-elss-tax-saver-fund/direct-growth | Baroda BNP Paribas Scheme |
+| 157 | Baroda BNP Paribas Mid Cap Fund Scheme Page | https://www.barodabnpparibasmf.in/mutual-fund-schemes/equity-funds/baroda-bnp-paribas-mid-cap-fund/direct-growth | Baroda BNP Paribas Scheme |
 
 ## Regulatory
 
 | # | Title | URL | Category |
 |---|-------|-----|----------|
-| 115 | SEBI Investor Riskometer Guide | https://investor.sebi.gov.in/riskometer.html | SEBI |
-| 116 | SEBI Risk-o-meter Circular | https://www.sebi.gov.in/legal/circulars/oct-2020/circular-on-product-labeling-in-mutual-fund-schemes-risk-o-meter_47796.html | SEBI |
-| 117 | SEBI Mutual Fund Investor FAQs | https://www.sebi.gov.in/sebi_data/faqfiles/sep-2024/1727242783639.pdf | SEBI |
-| 118 | AMFI Investor Corner | https://www.amfiindia.com/investor | AMFI |
-| 119 | AMFI How to Invest and Investor Awareness | https://www.amfiindia.com/investor/investor-awareness-program | AMFI |
-
-## Local Reference Files (`data/`)
-
-Structured summaries mirroring official disclosures are stored locally for resilience during ingestion:
-
-- `data/sbi_scheme_reference.md`
-- `data/regulatory_reference.md`
-
-**Total official URLs in `urls.csv`: 119**
+| 158 | SEBI Investor Riskometer Guide | https://investor.sebi.gov.in/riskometer.html | SEBI |
+| 159 | SEBI Risk-o-meter Circular | https://www.sebi.gov.in/legal/circulars/oct-2020/circular-on-product-labeling-in-mutual-fund-schemes-risk-o-meter_47796.html | SEBI |
+| 160 | SEBI Mutual Fund Investor FAQs | https://www.sebi.gov.in/sebi_data/faqfiles/sep-2024/1727242783639.pdf | SEBI |
+| 161 | AMFI Investor Corner | https://www.amfiindia.com/investor | AMFI |
+| 162 | AMFI How to Invest and Investor Awareness | https://www.amfiindia.com/investor/investor-awareness-program | AMFI |
