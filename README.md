@@ -12,10 +12,10 @@ The knowledge base is **multi-AMC by design**: every source is tagged with the f
 - **HDFC:** HDFC Flexi Cap Fund, HDFC Large Cap Fund, HDFC Mid-Cap Opportunities Fund, HDFC ELSS Tax Saver Fund, HDFC Balanced Advantage Fund, HDFC Corporate Bond Fund, HDFC Short Term Debt Fund, HDFC Nifty 50 Index Fund
 - **ICICI Prudential:** Flexicap Fund, Large Cap Fund, ELSS Tax Saver Fund, MidCap Fund, Balanced Advantage Fund, Corporate Bond Fund, Nifty 50 Index Fund, Short Term Fund
 - **Nippon India:** Large Cap Fund, Small Cap Fund, Flexi Cap Fund, ELSS Tax Saver Fund, Balanced Advantage Fund, Corporate Bond Fund, Index Fund (Nifty 50 Plan), Gilt Securities Fund
-- **Aditya Birla Sun Life:** Frontline Equity Fund, Flexi Cap Fund, Midcap Fund, ELSS Tax Relief 96
-- **Kotak Mahindra:** Flexicap Fund, Midcap Fund, Large Cap Fund (formerly Bluechip), ELSS Tax Saver Fund
-- **Axis:** Bluechip Fund, Flexi Cap Fund, Mid Cap Fund, ELSS Tax Saver Fund (formerly Long Term Equity Fund)
-- **UTI:** Mastershare Unit Scheme, Flexi Cap Fund, Mid Cap Fund, ELSS Tax Saver Fund
+- **Aditya Birla Sun Life:** Frontline Equity Fund, Flexi Cap Fund, Midcap Fund, ELSS Tax Relief 96, Balanced Advantage Fund, Corporate Bond Fund, Nifty 50 Index Fund, Dynamic Bond Fund
+- **Kotak Mahindra:** Flexicap Fund, Midcap Fund, Large Cap Fund (formerly Bluechip), ELSS Tax Saver Fund, Balanced Advantage Fund, Nifty 50 Index Fund, Corporate Bond Fund, Gilt Fund
+- **Axis:** Bluechip Fund, Flexi Cap Fund, Mid Cap Fund, ELSS Tax Saver Fund (formerly Long Term Equity Fund), Balanced Advantage Fund, Nifty 100 Index Fund, Corporate Bond Fund, Banking and PSU Debt Fund
+- **UTI:** Mastershare Unit Scheme, Flexi Cap Fund, Mid Cap Fund, ELSS Tax Saver Fund, Balanced Advantage Fund, Corporate Bond Fund, Nifty 50 Index Fund, Gilt Fund
 - **DSP:** Flexi Cap Fund, Mid Cap Fund, Large Cap Fund (formerly Top 100 Equity Fund), ELSS Tax Saver Fund
 - **Tata:** Large Cap Fund, Mid Cap Fund, Flexi Cap Fund, ELSS Tax Saver Fund
 - **Franklin Templeton:** Flexi Cap Fund, Large Cap Fund (formerly Bluechip), ELSS Tax Saver Fund, Small Cap Fund (formerly Smaller Companies Fund)
