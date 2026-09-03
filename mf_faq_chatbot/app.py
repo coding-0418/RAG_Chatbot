@@ -18,9 +18,10 @@ st.set_page_config(
 )
 
 EXAMPLE_QUESTIONS = [
-    ("💰", "What is the expense ratio of SBI Bluechip Fund?"),
-    ("🔒", "What is the lock-in period of SBI Long Term Equity Fund?"),
-    ("📊", "What is the exit load of HDFC Flexi Cap Fund?"),
+    ("💰", "Expense ratio", "What is the expense ratio of SBI Bluechip Fund?"),
+    ("🔒", "Lock-in period", "What is the lock-in period of SBI Long Term Equity Fund?"),
+    ("📊", "Exit load", "What is the exit load of HDFC Flexi Cap Fund?"),
+    ("📈", "Riskometer", "What is the Risk-o-meter for mutual fund schemes?"),
 ]
 
 ALL_FUND_HOUSES = "All fund houses"
@@ -37,63 +38,146 @@ def inject_custom_css() -> None:
         """
         <style>
         .block-container {
-            padding-top: 2rem;
-            max-width: 1100px;
+            padding-top: 1.75rem;
+            max-width: 1140px;
         }
 
-        /* Hero header */
+        h1, h2, h3, h4 { letter-spacing: -0.01em; }
+
+        /* ---------- Hero ---------- */
         .mf-hero {
-            background: linear-gradient(135deg, #0B5FFF 0%, #2E8BFF 100%);
-            border-radius: 16px;
-            padding: 1.75rem 2rem;
+            background: linear-gradient(135deg, #071B3D 0%, #0B5FFF 55%, #2E8BFF 100%);
+            border-radius: 20px;
+            padding: 2.1rem 2.3rem;
             color: #FFFFFF;
-            margin-bottom: 1.25rem;
-            box-shadow: 0 8px 24px rgba(11, 95, 255, 0.18);
+            margin-bottom: 1.1rem;
+            box-shadow: 0 16px 40px rgba(11, 40, 95, 0.28);
+            position: relative;
+            overflow: hidden;
+        }
+        .mf-hero::after {
+            content: "";
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 197, 66, 0.28) 0%, rgba(255,255,255,0) 70%);
+        }
+        .mf-hero-eyebrow {
+            display: inline-block;
+            background: rgba(255, 197, 66, 0.18);
+            border: 1px solid rgba(255, 197, 66, 0.45);
+            color: #FFD98A;
+            border-radius: 999px;
+            padding: 0.2rem 0.75rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 0.7rem;
         }
         .mf-hero h1 {
-            margin: 0 0 0.35rem 0;
-            font-size: 1.9rem;
-            font-weight: 700;
+            margin: 0 0 0.4rem 0;
+            font-size: 2.15rem;
+            font-weight: 800;
             color: #FFFFFF;
         }
         .mf-hero p {
             margin: 0;
+            max-width: 640px;
             opacity: 0.92;
-            font-size: 0.98rem;
+            font-size: 1rem;
+            line-height: 1.5;
         }
         .mf-hero-badges {
-            margin-top: 0.9rem;
+            margin-top: 1.1rem;
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
         .mf-pill {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.16);
-            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.32);
             border-radius: 999px;
-            padding: 0.2rem 0.7rem;
+            padding: 0.22rem 0.75rem;
             font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        /* ---------- Stats strip ---------- */
+        .mf-stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1.4rem;
+        }
+        .mf-stat-card {
+            background: linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 100%);
+            border: 1px solid #E4EAF5;
+            border-radius: 14px;
+            padding: 0.95rem 1.1rem;
+            box-shadow: 0 2px 8px rgba(20, 40, 90, 0.05);
+        }
+        .mf-stat-value {
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: #0B2860;
+            line-height: 1.1;
+        }
+        .mf-stat-label {
+            font-size: 0.78rem;
+            color: #6B7688;
+            margin-top: 0.15rem;
             font-weight: 500;
+        }
+
+        /* ---------- AMC showcase chips ---------- */
+        .mf-section-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1A1D23;
+            margin: 0.2rem 0 0.6rem 0;
+        }
+        div[data-testid="stHorizontalBlock"] div[data-testid="stButton"] button {
+            border-radius: 999px !important;
+            border: 1px solid #D7E1F5 !important;
+            background: #F7FAFF !important;
+            color: #0B2860 !important;
+            font-size: 0.8rem !important;
+            font-weight: 600 !important;
+            padding: 0.3rem 0.4rem !important;
+            transition: all 0.15s ease-in-out;
+        }
+        div[data-testid="stHorizontalBlock"] div[data-testid="stButton"] button:hover {
+            border-color: #0B5FFF !important;
+            background: #0B5FFF !important;
+            color: #FFFFFF !important;
+            transform: translateY(-1px);
         }
 
         /* Example question cards (buttons) */
         div[data-testid="column"] div[data-testid="stButton"] button {
-            border-radius: 12px;
-            border: 1px solid rgba(11, 95, 255, 0.25);
-            background: #F7FAFF;
+            border-radius: 14px;
+            border: 1px solid rgba(11, 95, 255, 0.18);
+            background: #FFFFFF;
             color: #1A1D23;
             text-align: left;
-            padding: 0.85rem 1rem;
+            padding: 0.95rem 1.05rem;
             height: 100%;
             white-space: normal;
+            box-shadow: 0 1px 3px rgba(20, 40, 90, 0.04);
             transition: all 0.15s ease-in-out;
         }
         div[data-testid="column"] div[data-testid="stButton"] button:hover {
             border-color: #0B5FFF;
-            background: #EAF1FF;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(11, 95, 255, 0.12);
+            background: #F0F6FF;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(11, 95, 255, 0.14);
         }
 
         .mf-meta-caption {
@@ -102,13 +186,38 @@ def inject_custom_css() -> None:
             margin-top: 0.15rem;
         }
 
-        /* Sidebar cards */
-        section[data-testid="stSidebar"] .stContainer,
-        section[data-testid="stSidebar"] div[data-testid="stVerticalBlockBorderWrapper"] {
-            border-radius: 12px;
+        /* ---------- Chat bubbles ---------- */
+        div[data-testid="stChatMessage"] {
+            border-radius: 16px;
+            padding: 0.35rem 0.15rem;
+        }
+        div[data-testid="stChatMessageAvatarUser"] {
+            background: linear-gradient(135deg, #0B5FFF, #2E8BFF) !important;
+        }
+        div[data-testid="stChatMessageAvatarAssistant"] {
+            background: linear-gradient(135deg, #071B3D, #0B5FFF) !important;
         }
 
-        /* Footer badge row */
+        /* ---------- Sidebar ---------- */
+        section[data-testid="stSidebar"] {
+            background: linear-gradient(180deg, #FBFCFE 0%, #F2F5FA 100%);
+        }
+        section[data-testid="stSidebar"] .stContainer,
+        section[data-testid="stSidebar"] div[data-testid="stVerticalBlockBorderWrapper"] {
+            border-radius: 14px;
+        }
+        .mf-amc-count-badge {
+            display: inline-block;
+            background: #0B5FFF;
+            color: #FFFFFF;
+            border-radius: 999px;
+            padding: 0.12rem 0.55rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-left: 0.4rem;
+        }
+
+        /* ---------- Footer ---------- */
         .mf-footer-badges {
             display: flex;
             flex-wrap: wrap;
@@ -135,18 +244,52 @@ def render_hero() -> None:
     st.markdown(
         """
         <div class="mf-hero">
+            <span class="mf-hero-eyebrow">Facts-only · Zero investment advice</span>
             <h1>📊 Mutual Fund FAQ Assistant</h1>
-            <p>Facts-only answers about mutual fund schemes across the fund houses covered
-            in the knowledge base — grounded in official sources, with no investment advice.</p>
+            <p>Instant, source-cited answers about mutual fund schemes across every fund house
+            in the knowledge base — grounded in official disclosures, refreshed as sources change,
+            and built to refuse anything that isn't a plain fact.</p>
             <div class="mf-hero-badges">
                 <span class="mf-pill">✅ Guardrails active</span>
                 <span class="mf-pill">📚 Source-cited answers</span>
                 <span class="mf-pill">🔒 No PII collected</span>
+                <span class="mf-pill">⚡ Sub-second retrieval</span>
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
+
+
+def render_stats_bar(amc_count: int, chunk_count: int) -> None:
+    stats = [
+        (str(amc_count) if amc_count else "—", "Fund houses covered"),
+        (f"{chunk_count:,}" if chunk_count else "—", "Verified source chunks"),
+        ("100%", "Guardrail-checked answers"),
+        ("₹0", "Cost to ask a question"),
+    ]
+    cards = "".join(
+        f'<div class="mf-stat-card"><div class="mf-stat-value">{value}</div>'
+        f'<div class="mf-stat-label">{label}</div></div>'
+        for value, label in stats
+    )
+    st.markdown(f'<div class="mf-stats-row">{cards}</div>', unsafe_allow_html=True)
+
+
+def render_amc_showcase(amcs: list[str]) -> None:
+    if not amcs:
+        return
+    st.markdown('<div class="mf-section-title">🏦 Browse by fund house</div>', unsafe_allow_html=True)
+    cols_per_row = 5
+    for row_start in range(0, len(amcs), cols_per_row):
+        row_amcs = amcs[row_start : row_start + cols_per_row]
+        cols = st.columns(cols_per_row)
+        for col, amc_name in zip(cols, row_amcs):
+            short_name = amc_name.replace(" Mutual Fund", "")
+            if col.button(short_name, key=f"amc-chip-{amc_name}", use_container_width=True):
+                st.session_state.amc_filter = amc_name
+                st.rerun()
+    st.markdown("<div style='height: 0.6rem'></div>", unsafe_allow_html=True)
 
 
 @st.cache_resource(show_spinner="Loading knowledge base and LLM...")
@@ -265,7 +408,7 @@ def render_sidebar() -> None:
             amcs, chunk_count = [], 0
 
         with st.container(border=True):
-            st.markdown("**🗂️ Coverage**")
+            st.markdown(f"**🗂️ Coverage** <span class='mf-amc-count-badge'>{len(amcs)}</span>", unsafe_allow_html=True)
             if amcs:
                 st.markdown("**Fund houses in knowledge base:**")
                 for amc_name in amcs:
@@ -336,11 +479,17 @@ def main() -> None:
         st.error(f"Failed to initialize the assistant: {exc}")
         st.stop()
 
+    rag = load_rag()
+    amcs = rag.list_amcs()
+    render_stats_bar(len(amcs), rag.collection_size())
+
     if not st.session_state.messages:
-        st.markdown("**Try an example question:**")
+        render_amc_showcase(amcs)
+
+        st.markdown('<div class="mf-section-title">💬 Try a popular question</div>', unsafe_allow_html=True)
         cols = st.columns(len(EXAMPLE_QUESTIONS))
-        for col, (icon, example) in zip(cols, EXAMPLE_QUESTIONS):
-            if col.button(f"{icon}  {example}", use_container_width=True):
+        for col, (icon, label, example) in zip(cols, EXAMPLE_QUESTIONS):
+            if col.button(f"{icon}  {label}: {example}", use_container_width=True):
                 process_question(example)
                 st.rerun()
         st.divider()
