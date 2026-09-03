@@ -18,7 +18,7 @@ class TestInvestmentAdviceGuardrail:
         assert not is_investment_advice_query("What is the expense ratio of SBI Bluechip Fund?")
 
     def test_allows_process_question(self):
-        assert not is_investment_advice_query("How do I download my capital gains statement on Kuvera?")
+        assert not is_investment_advice_query("How do I download my capital gains statement?")
 
 
 class TestPrivacyGuardrail:

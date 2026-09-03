@@ -2,11 +2,10 @@
 
 [![CI](https://github.com/coding-0418/RAG_Chatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/coding-0418/RAG_Chatbot/actions/workflows/ci.yml)
 
-A **facts-only** FAQ chatbot for mutual fund schemes accessible on **Kuvera**. It answers factual questions about expense ratio, exit load, minimum SIP, lock-in period, risk-o-meter, benchmark, KIM/SID, and Kuvera statement downloads — and **refuses** investment advice, comparisons, return predictions, and PII.
+A **facts-only** FAQ chatbot for mutual fund schemes across multiple AMCs. It answers factual questions about expense ratio, exit load, minimum SIP, lock-in period, risk-o-meter, benchmark, and KIM/SID — and **refuses** investment advice, comparisons, return predictions, and PII.
 
 The knowledge base is **multi-AMC by design**: every source is tagged with the fund house (AMC) it belongs to, retrieval can be scoped to one AMC, and the UI's fund-house list and filter are generated from whatever is actually indexed — not hardcoded. See [Adding Another Fund House](#adding-another-fund-house) for how coverage grows.
 
-**Platform:** Kuvera  
 **AMCs configured in `urls.csv`:** 25 major fund houses (SBI, HDFC, ICICI Prudential, Nippon India, Aditya Birla Sun Life, Kotak Mahindra, Axis, UTI, DSP, Tata, Franklin Templeton, Mirae Asset, Canara Robeco, PGIM India, Sundaram, Bandhan, HSBC, Motilal Oswal, PPFAS, quant, Quantum, Edelweiss, LIC, WhiteOak Capital, Baroda BNP Paribas) — each with its official homepage and Total Expense Ratio disclosure page. Run `python ingest.py` to actually index them.  
 **Schemes with full detail:**
 - **SBI:** SBI Bluechip Fund, SBI Contra Fund, SBI Long Term Equity Fund (ELSS), SBI Magnum Midcap Fund, SBI Small Cap Fund
@@ -141,7 +140,7 @@ Ingestion logs successes and failures per URL. Local reference files ensure base
 
 The pipeline and UI are AMC-agnostic — coverage grows by adding data, not by changing code. This is also how to deepen an already-listed AMC (e.g. adding SBI-style scheme/factsheet/SID/KIM rows for an AMC that currently only has homepage/TER coverage):
 
-1. **Add rows to `urls.csv`** for the new AMC's official pages/PDFs (scheme pages, factsheets, SID/KIM, TER disclosure), filling the `amc` column with the fund house's name exactly as you want it shown (e.g. `HDFC Mutual Fund`). Cross-cutting regulator/platform sources (SEBI, AMFI, Kuvera) should keep `amc` set to `Regulatory` or `Platform` — those are excluded from the fund-house picker since they aren't a single AMC.
+1. **Add rows to `urls.csv`** for the new AMC's official pages/PDFs (scheme pages, factsheets, SID/KIM, TER disclosure), filling the `amc` column with the fund house's name exactly as you want it shown (e.g. `HDFC Mutual Fund`). Cross-cutting regulator sources (SEBI, AMFI) should keep `amc` set to `Regulatory` — those are excluded from the fund-house picker since they aren't a single AMC.
 2. **Optionally add local reference files** under `data/` and map the filename to an AMC in `LOCAL_FILE_AMC` in `ingest.py`.
 3. **Re-run `python ingest.py`.** The new AMC appears automatically in the sidebar's fund-house list and filter dropdown — no `app.py` or `rag.py` changes needed.
 4. **Verify sources before adding them.** `ingest.py` fetches live URLs at ingestion time; a wrong or dead URL just fails that one row (logged, skipped) rather than breaking the run, but a fabricated or unofficial source would silently degrade answer quality for that AMC. Only add pages you've confirmed are the AMC's own official disclosures.
@@ -201,7 +200,7 @@ Ask factual questions such as:
 
 - *What is the expense ratio of SBI Bluechip Fund?*
 - *What is the lock-in period of SBI Long Term Equity Fund?*
-- *How do I download my capital gains statement on Kuvera?*
+- *What is the exit load of HDFC Flexi Cap Fund?*
 
 Follow-up questions within the same session (e.g. *"What about the exit load?"* right after asking
 about a specific fund) are resolved using the last couple of turns of conversation history.
@@ -246,12 +245,11 @@ dropped before generation rather than passed to the LLM as weak grounding — th
 2. **Scheme renaming:** SBI Bluechip Fund is now SBI Large Cap Fund; ELSS is branded SBI ELSS Tax Saver Fund. The assistant uses official current names from sources.
 3. **Web ingestion dependency:** `ingest.py` requires network access to fetch URLs. Some PDFs are large and may take time.
 4. **JavaScript-heavy pages:** Scheme detail pages on sbimf.com may render minimal static HTML; SID/KIM PDFs and local reference files compensate.
-5. **No live account integration:** Kuvera answers describe platform steps only; the bot cannot access user accounts.
-6. **LLM variability:** Groq responses are temperature-0 but phrasing may differ slightly run-to-run while preserving facts.
-7. **Full re-index on ingest:** `ingest.py` rebuilds the entire vector store rather than diffing changes — fine for a periodic scheduled job, but there's no incremental/delta ingestion yet.
-8. **No authentication:** the Streamlit app has no login/SSO layer. A lightweight per-session rate limit is built in (throttles rapid repeat questions), but a shared-network deployment should sit behind SSO or a reverse-proxy auth layer before going further than a demo.
-9. **Regex-based guardrails:** investment-advice and PII detection are pattern-based, not an LLM classifier — fast and dependency-free, but rephrasing can evade them. Treat as a first line of defense, not a compliance guarantee.
-10. **Homepage/TER-level coverage for most AMCs:** `urls.csv` carries verified homepage and Total Expense Ratio sources for 25 major fund houses, and scheme-level depth (individual scheme pages, factsheets, SID/KIM PDFs) for SBI, HDFC, and ICICI Prudential's most popular funds. Other AMCs will answer TER/general questions but likely hit "not found" for scheme-specific facts until their own scheme-level sources are added (same pattern as the existing SBI/HDFC/ICICI Prudential rows in `urls.csv`).
+5. **LLM variability:** Groq responses are temperature-0 but phrasing may differ slightly run-to-run while preserving facts.
+6. **Full re-index on ingest:** `ingest.py` rebuilds the entire vector store rather than diffing changes — fine for a periodic scheduled job, but there's no incremental/delta ingestion yet.
+7. **No authentication:** the Streamlit app has no login/SSO layer. A lightweight per-session rate limit is built in (throttles rapid repeat questions), but a shared-network deployment should sit behind SSO or a reverse-proxy auth layer before going further than a demo.
+8. **Regex-based guardrails:** investment-advice and PII detection are pattern-based, not an LLM classifier — fast and dependency-free, but rephrasing can evade them. Treat as a first line of defense, not a compliance guarantee.
+9. **Homepage/TER-level coverage for most AMCs:** `urls.csv` carries verified homepage and Total Expense Ratio sources for 25 major fund houses, and scheme-level depth (individual scheme pages, factsheets, SID/KIM PDFs) for SBI, HDFC, and ICICI Prudential's most popular funds. Other AMCs will answer TER/general questions but likely hit "not found" for scheme-specific facts until their own scheme-level sources are added (same pattern as the existing SBI/HDFC/ICICI Prudential rows in `urls.csv`).
 11. **Cross-AMC comparison guardrail is unresolved:** the current guardrail blocks any "which fund is better" style comparison outright, including a neutral factual side-by-side (e.g. "what's each fund's expense ratio") across AMCs. Whether to allow that narrower case is a compliance decision that hasn't been made yet — until it is, comparisons stay blocked entirely.
 
 ---
@@ -266,7 +264,6 @@ right against live sources) since that requires a real Groq call and live-source
 
 - Expense ratio, exit load, minimum SIP, benchmark, risk-o-meter
 - ELSS 3-year lock-in
-- Kuvera statement and capital gains downloads
 - KIM/SID explanation
 - Investment advice refusal
 - PII detection
@@ -286,4 +283,4 @@ Suggested manual evaluation checklist:
 
 ## License
 
-Educational / assignment submission project. Official fund data belongs to respective AMCs, SEBI, AMFI, and Kuvera.
+Educational / assignment submission project. Official fund data belongs to respective AMCs, SEBI, and AMFI.
