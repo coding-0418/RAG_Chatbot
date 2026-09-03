@@ -20,7 +20,7 @@ st.set_page_config(
 EXAMPLE_QUESTIONS = [
     ("💰", "What is the expense ratio of SBI Bluechip Fund?"),
     ("🔒", "What is the lock-in period of SBI Long Term Equity Fund?"),
-    ("📄", "How do I download my capital gains statement on Kuvera?"),
+    ("📊", "What is the exit load of HDFC Flexi Cap Fund?"),
 ]
 
 ALL_FUND_HOUSES = "All fund houses"
@@ -137,8 +137,7 @@ def render_hero() -> None:
         <div class="mf-hero">
             <h1>📊 Mutual Fund FAQ Assistant</h1>
             <p>Facts-only answers about mutual fund schemes across the fund houses covered
-            in the knowledge base, viewed via Kuvera — grounded in official sources, with
-            no investment advice.</p>
+            in the knowledge base — grounded in official sources, with no investment advice.</p>
             <div class="mf-hero-badges">
                 <span class="mf-pill">✅ Guardrails active</span>
                 <span class="mf-pill">📚 Source-cited answers</span>
@@ -267,7 +266,6 @@ def render_sidebar() -> None:
 
         with st.container(border=True):
             st.markdown("**🗂️ Coverage**")
-            st.markdown("**Platform:** Kuvera")
             if amcs:
                 st.markdown("**Fund houses in knowledge base:**")
                 for amc_name in amcs:

@@ -79,7 +79,6 @@ class TestBuildDocument:
 class TestLocalFileAmcMapping:
     def test_known_local_files_map_to_expected_amc(self):
         assert ingest.LOCAL_FILE_AMC["sbi_scheme_reference.md"] == "SBI Mutual Fund"
-        assert ingest.LOCAL_FILE_AMC["kuvera_platform_guide.md"] == "Platform"
         assert ingest.LOCAL_FILE_AMC["regulatory_reference.md"] == "Regulatory"
 
     def test_unknown_local_file_falls_back_to_general(self):

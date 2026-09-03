@@ -41,7 +41,6 @@ DATA_DIR = PROJECT_ROOT / "data"
 CROSS_CUTTING_AMC_TAGS = {"Regulatory", "Platform", "General"}
 LOCAL_FILE_AMC = {
     "sbi_scheme_reference.md": "SBI Mutual Fund",
-    "kuvera_platform_guide.md": "Platform",
     "regulatory_reference.md": "Regulatory",
 }
 CHROMA_DIR = PROJECT_ROOT / os.getenv("CHROMA_PERSIST_DIR", "vectorstore")
