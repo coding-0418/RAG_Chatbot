@@ -14,6 +14,14 @@ The knowledge base is **multi-AMC by design**: every source is tagged with the f
 - **Nippon India:** Large Cap Fund, Small Cap Fund, Flexi Cap Fund, ELSS Tax Saver Fund
 - **Aditya Birla Sun Life:** Frontline Equity Fund, Flexi Cap Fund, Midcap Fund, ELSS Tax Relief 96
 - **Kotak Mahindra:** Flexicap Fund, Midcap Fund, Large Cap Fund (formerly Bluechip), ELSS Tax Saver Fund
+- **Axis:** Bluechip Fund, Flexi Cap Fund, Mid Cap Fund, ELSS Tax Saver Fund (formerly Long Term Equity Fund)
+- **UTI:** Mastershare Unit Scheme, Flexi Cap Fund, Mid Cap Fund, ELSS Tax Saver Fund
+- **DSP:** Flexi Cap Fund, Mid Cap Fund, Large Cap Fund (formerly Top 100 Equity Fund), ELSS Tax Saver Fund
+- **Tata:** Large Cap Fund, Mid Cap Fund, Flexi Cap Fund, ELSS Tax Saver Fund
+- **Franklin Templeton:** Flexi Cap Fund, Large Cap Fund (formerly Bluechip), ELSS Tax Saver Fund, Small Cap Fund (formerly Smaller Companies Fund)
+- **Mirae Asset:** ELSS Tax Saver Fund, Flexi Cap Fund, Midcap Fund, Large & Midcap Fund
+- **Canara Robeco:** Bluechip Equity Fund, ELSS Tax Saver Fund, Emerging Equities Fund, Flexi Cap Fund
+- **PGIM India:** Flexi Cap Fund, ELSS Tax Saver Fund, Large and Mid Cap Fund, Midcap Fund (formerly Midcap Opportunities Fund)
 
 All other configured AMCs are currently homepage/TER-level only — see below to deepen them the same way.
 
@@ -252,7 +260,7 @@ dropped before generation rather than passed to the LLM as weak grounding — th
 6. **Full re-index on ingest:** `ingest.py` rebuilds the entire vector store rather than diffing changes — fine for a periodic scheduled job, but there's no incremental/delta ingestion yet.
 7. **No authentication:** the Streamlit app has no login/SSO layer. A lightweight per-session rate limit is built in (throttles rapid repeat questions), but a shared-network deployment should sit behind SSO or a reverse-proxy auth layer before going further than a demo.
 8. **Regex-based guardrails:** investment-advice and PII detection are pattern-based, not an LLM classifier — fast and dependency-free, but rephrasing can evade them. Treat as a first line of defense, not a compliance guarantee.
-9. **Homepage/TER-level coverage for most AMCs:** `urls.csv` carries verified homepage and Total Expense Ratio sources for 25 major fund houses, and scheme-level depth (individual scheme pages, factsheets, SID/KIM PDFs) for SBI, HDFC, ICICI Prudential, Nippon India, Aditya Birla Sun Life, and Kotak Mahindra's most popular funds. Other AMCs will answer TER/general questions but likely hit "not found" for scheme-specific facts until their own scheme-level sources are added (same pattern as the existing rows in `urls.csv`).
+9. **Homepage/TER-level coverage for most AMCs:** `urls.csv` carries verified homepage and Total Expense Ratio sources for 25 major fund houses, and scheme-level depth (individual scheme pages, factsheets, SID/KIM PDFs) for 14 of them — SBI, HDFC, ICICI Prudential, Nippon India, Aditya Birla Sun Life, Kotak Mahindra, Axis, UTI, DSP, Tata, Franklin Templeton, Mirae Asset, Canara Robeco, and PGIM India's most popular funds. The remaining 11 AMCs will answer TER/general questions but likely hit "not found" for scheme-specific facts until their own scheme-level sources are added (same pattern as the existing rows in `urls.csv`).
 10. **Cross-AMC comparison guardrail is unresolved:** the current guardrail blocks any "which fund is better" style comparison outright, including a neutral factual side-by-side (e.g. "what's each fund's expense ratio") across AMCs. Whether to allow that narrower case is a compliance decision that hasn't been made yet — until it is, comparisons stay blocked entirely.
 
 ---
